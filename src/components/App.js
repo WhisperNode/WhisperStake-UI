@@ -44,8 +44,6 @@ import LogoWhite from '../assets/logo-white.png'
 import LogoWhite2x from '../assets/logo-white@2x.png'
 import LogoWhite3x from '../assets/logo-white@3x.png'
 
-import PoweredByAkash from '../assets/powered-by-akash.svg'
-import PoweredByAkashWhite from '../assets/powered-by-akash-white.svg'
 import TooltipIcon from './TooltipIcon';
 import Voting from './Voting';
 import Networks from './Networks';
@@ -810,14 +808,9 @@ class App extends React.Component {
               signingClient={this.state.signingClient} />
           )}
         </div>
-        <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <a href="https://akash.network" target="_blank" rel="noreferrer" className="col-md-4 mb-0 text-muted">
-            {this.props.theme === 'light'
-              ? (
-                <img src={PoweredByAkash} alt="Powered by Akash" width={200} />
-              ) : (
-                <img src={PoweredByAkashWhite} alt="Powered by Akash" width={200} />
-              )}
+                <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <a href="https://twitter.com/gh0stdotexe" target="_blank" rel="noreferrer" className="col-md-4 mb-0 link-dark text-decoration-none">
+            <span className="d-none d-sm-inline">Operated by </span>gh0st 👻
           </a>
 
           <div className="col-md-4 align-items-center text-center me-lg-auto">
