@@ -12,7 +12,7 @@
     "@terra-money/terra.js": "^3.1.8",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/user-event": "^14.4.3",
     "@tharsis/address-converter": "^0.1.8",
     "@walletconnect/client": "^1.8.0",
     "axios": "^1.4.0",
