@@ -44,8 +44,6 @@ import LogoWhite from '../assets/logo-white.png'
 import LogoWhite2x from '../assets/logo-white@2x.png'
 import LogoWhite3x from '../assets/logo-white@3x.png'
 
-import PoweredByAkash from '../assets/powered-by-akash.svg'
-import PoweredByAkashWhite from '../assets/powered-by-akash-white.svg'
 import TooltipIcon from './TooltipIcon';
 import Voting from './Voting';
 import Networks from './Networks';
@@ -810,21 +808,16 @@ class App extends React.Component {
               signingClient={this.state.signingClient} />
           )}
         </div>
-        <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <a href="https://akash.network" target="_blank" rel="noreferrer" className="col-md-4 mb-0 text-muted">
-            {this.props.theme === 'light'
-              ? (
-                <img src={PoweredByAkash} alt="Powered by Akash" width={200} />
-              ) : (
-                <img src={PoweredByAkashWhite} alt="Powered by Akash" width={200} />
-              )}
+                <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <a href="https://twitter.com/gh0stdotexe" target="_blank" rel="noreferrer" className="col-md-4 mb-0 link-dark text-decoration-none">
+            <span className="d-none d-sm-inline">Operated by </span>gh0st 👻
           </a>
 
           <div className="col-md-4 align-items-center text-center me-lg-auto">
             <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="text-reset text-decoration-none d-block mb-2">
               <span className="d-none d-sm-inline">Built with 💚&nbsp;</span> by ECO Stake 🌱
             </a>
-            <a href={`https://${this.props.directory.domain}`} target="_blank" className="text-reset text-decoration-none d-block small">
+            <a href={`https://${this.props.directory.domain}`} target="_blank" rel="noopener noreferrer" className="text-reset text-decoration-none d-block small">
               <span className="d-none d-sm-inline">Interchain APIs from</span> <u>cosmos.directory</u>
             </a>
           </div>

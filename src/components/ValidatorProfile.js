@@ -214,7 +214,7 @@ function ValidatorProfile(props) {
                         </td>
                         <td className="list-group list-group-flush flex-fill">
                           {nodes.map(api => {
-                            return <a href={api.address} target="_blank" className="text-reset text-decoration-underline">{api.address}</a>
+                            return <a href={api.address} target="_blank" rel="noopener noreferrer" className="text-reset text-decoration-underline">{api.address}</a>
                           }).reduce((prev, curr) => [prev, <br />, curr])}
                         </td>
                       </tr>
