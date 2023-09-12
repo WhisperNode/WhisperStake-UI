@@ -30,31 +30,6 @@ const app = (
   </React.StrictMode>
 )
 
-if (process.env.BUGSNAG_KEY) {
-  Bugsnag.start({
-    apiKey: process.env.BUGSNAG_KEY,
-    plugins: [new BugsnagPluginReact()],
-    enabledReleaseStages: ['production', 'staging'],
-    releaseStage: process.env.NODE_ENV
-  })
-  
-  const ErrorBoundary = Bugsnag.getPlugin('react')
-    .createErrorBoundary(React)
-  
-  ReactDOM.render(
-    <ErrorBoundary>
-      {app}
-    </ErrorBoundary>,
-    document.getElementById('root')
-  );
-}else{
-  ReactDOM.render(
-    app,
-    document.getElementById('root')
-  );
-}
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import { inject } from '@vercel/analytics';
+ 
+inject();
