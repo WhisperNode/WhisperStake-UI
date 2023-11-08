@@ -1,53 +1,50 @@
 [
   {
     "name": "osmosis",
-    "ownerAddress": "osmovaloper1u5v0m74mql5nzfx2yh43s2tke4mvzghr6m2n5t",
+    "gasPrice": "0.0025uosmo",
+    "ownerAddress": "osmovaloper1md9f5524vtmrn64lyv2pdfn7cnkjkklf44vtjz",
+    "default": true,
     "maxPerDay": 1,
     "apiVersions": {
       "gov": "v1beta1"
-    },
-    "authzAminoExecPreventTypes": [
-      "/cosmos.gov."
-    ]
+    }
   },
   {
     "name": "juno",
-    "ownerAddress": "junovaloper19ur8r2l25qhsy9xvej5zgpuc5cpn6syydmwtrt",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "ownerAddress": "junovaloper193xl2tqh2tjkld2zv49ku5s44ee4qmgr65jcep"
   },
   {
     "name": "cosmoshub",
-    "ownerAddress": "cosmosvaloper1a37ze3yrr2y9nn98l6frhjskmufvd40cpyd0gq"
+    "ownerAddress": "cosmosvaloper19ecn7ljwp6el2pc5lldyauwv05ufwut9mm38r5"
+  },
+  {
+    "name": "axelar",
+    "ownerAddress":"axelarvaloper1j5vxzfx74xlml73e2mz9nn2ultz9jhzxjsakxw"
   },
   {
     "name": "akash",
     "ownerAddress": "akashvaloper1xgnd8aach3vawsl38snpydkng2nv8a4kqgs8hf"
   },
   {
-    "name": "chihuahua",
-    "ownerAddress": "chihuahuavaloper19vwcee000fhazmpt4ultvnnkhfh23ppwxll8zz"
+    "name": "chihuahua"
   },
   {
     "name": "gravitybridge"
   },
   {
     "name": "regen",
-    "ownerAddress": "regenvaloper1c4y3j05qx652rnxm5mg4yesqdkmhz2f6dl7hhk",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "ownerAddress": "regenvaloper1c4y3j05qx652rnxm5mg4yesqdkmhz2f6dl7hhk"
   },
   {
-    "name": "terra",
-    "authzAminoLiftedValues": false
+    "name": "terra"
   },
   {
-    "name": "terra2"
+    "name": "terra2",
+    "ownerAddress":"terravaloper1pwum4swah9t5mjynalk3f334v4ztxc66k29v25"
   },
   {
-    "name": "sentinel"
+    "name": "sentinel",
+    "ownerAddress":"sentvaloper1tjgec0ssfrlldmut69xsp8vzljugg0g306aae2"
   },
   {
     "name": "dig"
@@ -63,24 +60,18 @@
   },
   {
     "name": "desmos",
-    "authzAminoGenericOnly": false
+    "authzSupport": true,
+    "authzAminoSupport": true
   },
   {
     "name": "cryptoorgchain",
-    "ownerAddress": "crocncl10mfs428fyntu296dgh5fmhvdzrr2stlaekcrp9",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "ownerAddress": "crocncl10mfs428fyntu296dgh5fmhvdzrr2stlaekcrp9"
   },
   {
     "name": "evmos",
-    "ownerAddress": "evmosvaloper1umk407eed7af6anvut6llg2zevnf0dn0feqqny",
     "txTimeout": 120000,
     "maxPerDay": 1,
-    "gasPrice": "75000000000aevmos",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "authzAminoSupport": false
   },
   {
     "name": "sifchain"
@@ -89,22 +80,16 @@
     "name": "lumnetwork"
   },
   {
-    "name": "stargaze"
+    "name": "stargaze",
+    "ownerAddress":"starsvaloper17z2ynnlm8evtjpzvsw3239w75474rc7a4du4l3"
   },
   {
     "name": "comdex",
-    "ownerAddress": "comdexvaloper17f70yjkvmvld379904jaddx9h0f74n32pjtmp6",
-    "apiVersions": {
-      "gov": "v1beta1"
-    },
-    "authzAminoExecPreventTypes": [
-      "/cosmos.gov.",
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ],
-    "authzAminoGenericOnly": true
+    "ownerAddress": "comdexvaloper19qz6sgw7llrft2x05lp4swy569e5sla6gl3cuu"
   },
   {
-    "name": "cheqd"
+    "name": "cheqd",
+    "ownerAddress":"cheqdvaloper1qsp3a2qd6km9g0hczsac8279wcwmzmvzgvre8w"
   },
   {
     "name": "umee"
@@ -138,7 +123,8 @@
   },
   {
     "name": "secretnetwork",
-    "authzAminoGenericOnly": false
+    "authzAminoSupport": true,
+    "ownerAddress":"secretvaloper16k26akna7h295rfjx3278s7xusnt736vy437y8"
   },
   {
     "name": "bostrom"
@@ -154,7 +140,7 @@
   },
   {
     "name": "assetmantle",
-    "ownerAddress": "mantlevaloper1fqs7gakxdmujtk0qufdzth5pfyspus3yx394zd"
+    "ownerAddress": "mantlevaloper170ef5gajk5q8t90cv6qcmfv4ljwzuqtsklsgn6"
   },
   {
     "name": "crescent"
@@ -173,7 +159,7 @@
   },
   {
     "name": "kujira",
-    "ownerAddress": "kujiravaloper1vue5lawr3s0au9zj0aqeft5aknx6cjq6w5ghca"
+    "ownerAddress": "kujiravaloper1med39q63mwzxgqdzus70lp98krdrfmhhm4v8al"
   },
   {
     "name": "genesisl1",
@@ -199,27 +185,27 @@
   },
   {
     "name": "passage",
-    "ownerAddress": "pasgvaloper196rujtjehu0dfc7y85lkcaps6tel76g3l9knjy"
+    "ownerAddress": "pasgvaloper1c42pgxrg652f2f26dfgj40a7y5rhkt0wm9hwfj"
   },
   {
     "name": "stride",
-    "ownerAddress": "stridevaloper1x2kta40h5rnymtjn6ys7vk2d87xu7y6zfu9j3r",
+    "ownerAddress": "stridevaloper16a28swex9y3knnsls7ae072cu30sj6u5e67np0",
     "authzSupport": false
   },
   {
     "name": "pulsar",
+    "ownerAddress": "secretvaloper1mppy58g60n9wkr5494yqd8hmtgcyh5v6pynlfz",
     "testnet": true
   },
   {
-    "name": "teritori",
-    "ownerAddress": "torivaloper1d5u07lhelk6lal44a0myvufurvsqk5d499h9hz"
+    "name": "teritori"
   },
   {
     "name": "rebus"
   },
   {
     "name": "jackal",
-    "ownerAddress": "jklvaloper1rdyunvvqg2l3723hlyjvvsnkd4vg338uar8q2s"
+    "ownerAddress": "jklvaloper1upt02z2a64m00rh087q8r2esy7mg9yeq29j8gz"
   },
   {
     "name": "oraichain"
@@ -228,38 +214,25 @@
     "name": "acrechain"
   },
   {
-    "name": "mars",
-    "ownerAddress": "marsvaloper1hvtaqw9mlwc0a4cdx6g3klk8acfc6z3yazzk8a",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "name": "mars"
   },
   {
     "name": "planq"
   },
   {
     "name": "injective",
-    "ownerAddress": "injvaloper1vqz7mgm47xhx25xu5g9qagnz48naks6pk6fmg2",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "ownerAddress": "injvaloper1cutynk8xve9lqmwt4nn575x95v9849zj6p9564"
   },
   {
     "name": "xpla"
   },
   {
     "name": "kyve",
-    "ownerAddress": "kyvevaloper1egqphd8yjdfv84fl825grwgna0pf2emagdmnz8",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "ownerAddress": "kyvevaloper1egqphd8yjdfv84fl825grwgna0pf2emagdmnz8"
   },
   {
     "name": "quicksilver",
-    "maxPerDay": 1,
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "maxPerDay": 1
   },
   {
     "name": "chain4energy"
@@ -277,13 +250,13 @@
     "ownerAddress": "omniflixvaloper19d782trtcj4yq9lm7nxy3xs3xjg8vjktn3sjsd"
   },
   {
-    "name": "empowerchain",
-    "ownerAddress": "empowervaloper1msjwmclw77h5j0t69n7j2p9ur5ra46uxqaedxz",
-    "authzAminoExecPreventTypes": [
-      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
-    ]
+    "name": "aura"
   },
   {
-    "name": "qwoyn"
+    "name": "migaloo"
+  },
+  {
+    "name": "quasar",
+    "ownerAddress": "quasarvaloper1qpr2ezeut3xmarqsxddyld0sdlkrppgpq6alhj"
   }
 ]
