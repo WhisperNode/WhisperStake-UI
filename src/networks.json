@@ -27,7 +27,10 @@
   },
   {
     "name": "chihuahua",
-    "ownerAddress": "chihuahuavaloper19vwcee000fhazmpt4ultvnnkhfh23ppwxll8zz"
+    "ownerAddress": "chihuahuavaloper19vwcee000fhazmpt4ultvnnkhfh23ppwxll8zz",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "gravitybridge"
@@ -285,5 +288,17 @@
   },
   {
     "name": "qwoyn"
+  },
+  {
+    "name": "neutron",
+    "enabled": false
+  },
+  {
+    "name": "dydx",
+    "ownerAddress": "dydxvaloper15wphegl8esn7r2rgj9j3xf870v78lxg8yfjn95"
+  },
+  {
+    "name": "celestia",
+    "ownerAddress": "celestiavaloper1dsyuamue2p3l0z753pyrtegs52ftrg960re06j"
   }
 ]
