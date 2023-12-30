@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginReact from '@bugsnag/plugin-react'
 import React from 'react';
@@ -16,6 +17,7 @@ import './index.css';
 
 const app = (
   <React.StrictMode>
+    <SpeedInsights />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<NetworkFinder />} />
