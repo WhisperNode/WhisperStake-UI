@@ -276,7 +276,7 @@ function Validators(props) {
         <td className="d-none d-sm-table-cell" width={60}>
           <div className="d-grid justify-content-end align-items-center">
             {props.buttonText ? (
-              <Button size="sm" onClick={() => props.showValidator(validator, {activeTab: 'stake'})}>
+              <Button className='bttn' size="sm" onClick={() => props.showValidator(validator, {activeTab: 'stake'})}>
                 {props.buttonText}
               </Button>
             ) : props.manageControl ? props.manageControl({validator, operator, delegation, rewards, grants, filter}) : null}
@@ -293,7 +293,7 @@ function Validators(props) {
           <div className="input-group">
             <input className="form-control border-right-0 border" onChange={filterValidators} value={filter.keywords} type="text" placeholder="Search.." style={{maxWidth: 150}} />
             <span className="input-group-append">
-              <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({keywords: ''})}>
+              <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({keywords: ''})}>
                 <XCircle />
               </button>
             </span>
@@ -303,14 +303,14 @@ function Validators(props) {
           <div className="input-group">
             <input className="form-control border-right-0 border" onChange={filterValidators} value={filter.keywords} type="text" placeholder="Search.." />
             <span className="input-group-append">
-              <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({keywords: ''})}>
+              <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({keywords: ''})}>
                 <XCircle />
               </button>
             </span>
           </div>
         </div>
         <div className={`${!props.modal && 'd-md-flex'} d-none justify-content-center align-self-center`}>
-          <Nav fill variant="pills" activeKey={filter.group} className={`flex-row${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({group: e})}>
+          <Nav fill variant="pillls" activeKey={filter.group} className={`flex-row${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({group: e})}>
             <Nav.Item>
               <Nav.Link eventKey="delegated" disabled={filteredValidators(validators, {...filter, group: 'delegated'}).length < 1}>My Delegations</Nav.Link>
             </Nav.Item>

@@ -114,23 +114,23 @@ function Networks(props) {
           <div className="input-group">
             <input className="form-control border-right-0 border" onChange={filterNetworks} value={filter.keywords} type="text" placeholder="Search.." />
             <span className="input-group-append">
-              <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({...filter, keywords: ''})}>
+              <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({...filter, keywords: ''})}>
                 <XCircle />
               </button>
             </span>
           </div>
         </div>
         <div className="d-lg-flex d-none position-absolute mx-auto justify-content-center align-self-center">
-          <Nav fill variant="pills" activeKey={filter.group} className={`flex-row${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({...filter, group: e})}>
+          <Nav fill variant="pillls" activeKey={filter.group} className={`flex-row${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({...filter, group: e})}>
             <Nav.Item>
-              <Nav.Link eventKey="favourites" disabled={filteredNetworks(networks, {...filter, group: 'favourites'}).length < 1}>Favourites</Nav.Link>
+              <Nav.Link eventKey="favourites" className='bttn-tertiary' disabled={filteredNetworks(networks, {...filter, group: 'favourites'}).length < 1}>Favourites</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="all">All Networks</Nav.Link>
+              <Nav.Link className="bttn-tertiary" eventKey="all">All Networks</Nav.Link>
             </Nav.Item>
           </Nav>
         </div>
-        <div className="d-flex d-lg-none justify-content-end">
+        <div className="d-flex d-lg-none justify-content-end select-wrapper">
           <select className="form-select w-auto h-auto d-lg-none" aria-label="Network group" value={filter.group} onChange={(e) => setFilter({...filter, group: e.target.value})}>
             <option value="favourites" disabled={filteredNetworks(networks, {...filter, group: 'favourites'}).length < 1}>Favourites</option>
             <option value="all">All</option>

@@ -529,7 +529,7 @@ class Delegations extends React.Component {
                       </Dropdown.Menu>
                     </Dropdown>
                   ) : (
-                    <Button variant="primary" size="sm" onClick={() => this.showValidatorModal(validator)}>
+                    <Button className="bttn" variant="primary" size="sm" onClick={() => this.showValidatorModal(validator)}>
                       View
                     </Button>
                   )

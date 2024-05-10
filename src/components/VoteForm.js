@@ -148,11 +148,11 @@ function VoteForm(props) {
         <p className="text-end">
           {!loading
             ? (
-              <Button type="submit" disabled={!canVote()} className="btn btn-primary">
+              <Button type="submit" disabled={!canVote()} className="bttn bttn-primary">
                 {buttonText()}
               </Button>
             ) : (
-              <Button className="btn btn-primary" type="button" disabled>
+              <Button className="bttn bttn-primary" type="button" disabled>
                 <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
               </Button>
             )}

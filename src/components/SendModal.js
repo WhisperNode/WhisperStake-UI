@@ -200,9 +200,9 @@ function SendModal(props) {
                 <p className="text-end">
                   {!loading
                     ? (
-                      <Button type="submit" className="btn btn-primary ms-2" disabled={!valid()}>Send {coinAmount() && <Coins coins={coinAmount()} asset={network.baseAsset} fullPrecision={true} hideValue={true} />}</Button>
+                      <Button type="submit" className="bttn bttn-primary ms-2" disabled={!valid()}>Send {coinAmount() && <Coins coins={coinAmount()} asset={network.baseAsset} fullPrecision={true} hideValue={true} />}</Button>
                     )
-                    : <Button className="btn btn-primary" type="button" disabled>
+                    : <Button className="bttn bttn-primary" type="button" disabled>
                       <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
                     </Button>
                   }

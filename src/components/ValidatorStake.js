@@ -425,7 +425,7 @@ function ValidatorStake(props) {
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (
-                <Button className="btn-sm btn-secondary" disabled>
+                <Button className="bttn btn-sm btn-secondary" disabled>
                   <span
                     className="spinner-border spinner-border-sm"
                     role="status"
@@ -438,7 +438,7 @@ function ValidatorStake(props) {
             <TooltipIcon
               icon={
                 <div>
-                  <Button variant="primary" disabled={!wallet?.hasPermission(address, 'Delegate')} onClick={() => setAction('delegate')}>
+                  <Button className='bttn' variant="primary" disabled={!wallet?.hasPermission(address, 'Delegate')} onClick={() => setAction('delegate')}>
                     Delegate
                   </Button>
                 </div>

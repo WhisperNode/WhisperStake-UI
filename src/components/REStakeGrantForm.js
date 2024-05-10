@@ -206,10 +206,10 @@ function REStakeGrantForm(props) {
                           buttonText="Disable"
                         />
                       )}
-                      <Button type="submit" disabled={!wallet?.hasPermission(address, 'Grant')} className="btn btn-primary">{grants?.grantsExist ? 'Update' : 'Enable REStake'}</Button>
+                      <Button type="submit" disabled={!wallet?.hasPermission(address, 'Grant')} className="bttn bttn-primary">{grants?.grantsExist ? 'Update' : 'Enable REStake'}</Button>
                     </div>
                   )
-                  : <Button className="btn btn-primary" type="button" disabled>
+                  : <Button className="bttn bttn-primary" type="button" disabled>
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
                   </Button>
                 }

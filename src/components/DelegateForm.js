@@ -176,9 +176,9 @@ function DelegateForm(props) {
                   {props.closeForm && (
                     <Button variant="secondary" onClick={props.closeForm}>Cancel</Button>
                   )}
-                  <Button type="submit" disabled={!hasPermission()} className="btn btn-primary">{actionText()}</Button>
+                  <Button type="submit" disabled={!hasPermission()} className="bttn bttn-primary">{actionText()}</Button>
                 </>
-                ) : <Button className="btn btn-primary" type="button" disabled>
+                ) : <Button className="bttn bttn-primary" type="button" disabled>
                   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
                 </Button>
               }

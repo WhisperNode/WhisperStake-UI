@@ -689,7 +689,7 @@ class App extends React.Component {
                       )}
                       <li className="nav-item ps-3 d-flex align-items-center">
                         <Dropdown as={ButtonGroup}>
-                          <Dropdown.Toggle size="sm" className="rounded">
+                          <Dropdown.Toggle className="rounded bttn">
                             {this.state.address ? (
                               <>
                                 <CashCoin className="me-1" />
@@ -700,7 +700,7 @@ class App extends React.Component {
                             {this.state.address && (
                               <div className="d-block d-md-none">
                                 <Dropdown.Header className="text-truncate">{this.addressName()}</Dropdown.Header>
-                                <Dropdown.Item as="button" onClick={() => this.showWalletModal({activeTab: this.state.wallet ? 'wallet' : 'saved'})}>
+                                <Dropdown.Item as="bttn" onClick={() => this.showWalletModal({activeTab: this.state.wallet ? 'wallet' : 'saved'})}>
                                   <Coins
                                     coins={this.state.balance}
                                     asset={this.props.network.baseAsset}
@@ -713,7 +713,7 @@ class App extends React.Component {
                             {this.state.wallet ? (
                               <>
                                 <Dropdown.Item
-                                  as="button"
+                                  as="bttn"
                                   disabled={!this.state.wallet?.hasPermission(this.state.address, 'Send')}
                                   onClick={() => this.setState({ showSendModal: true })}
                                 >
@@ -722,7 +722,7 @@ class App extends React.Component {
                               </>
                             ) : (
                               this.signerProviders.map(provider => {
-                                return <Dropdown.Item as="button" key={provider.key} onClick={() => this.connect(provider.key, true)} disabled={!provider.available()}>Connect {provider.label}</Dropdown.Item>
+                                return <Dropdown.Item as="bttn" key={provider.key} onClick={() => this.connect(provider.key, true)} disabled={!provider.available()}>Connect {provider.label}</Dropdown.Item>
                               })
                             )}
                             <Dropdown.Item as="button" onClick={() => this.showWalletModal({ activeTab: 'saved' })}>Saved Addresses</Dropdown.Item>
