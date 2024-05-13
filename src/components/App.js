@@ -69,7 +69,7 @@ class App extends React.Component {
       favourites: favouriteJson ? JSON.parse(favouriteJson) : [],
       favouriteAddresses: favouriteAddressJson ? JSON.parse(favouriteAddressJson) : {}
     }
-    this.signerProviders = CosmostationSignerProvider.mjs[
+    this.signerProviders = [
       new KeplrSignerProvider(window.keplr),
       new LeapSignerProvider(window.leap),
       new CosmostationSignerProvider(window.cosmostation?.providers?.keplr, window.cosmostation?.cosmos),
@@ -152,8 +152,7 @@ class App extends React.Component {
   }
 
   getSignerProvider(providerKey){
-    
-    if (this.props.network?.disabledWallets?.include(providerKey)) return
+    if(this.props.network?.disabledWallets?.includes(providerKey)) return
 
     return providerKey && this.signerProviders.find(el => el.name === providerKey)
   }

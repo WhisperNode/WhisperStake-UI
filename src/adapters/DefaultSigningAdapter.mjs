@@ -60,7 +60,7 @@ export default class DefaultSigningAdapter {
         authInfoBytes: authInfoBytes,
         signatures: [Buffer.from(signature.signature, "base64")],
       }
-    }else if (this.signerProvider.signDirectSupport()){
+    }else if(this.signerProvider.signDirectSupport()){
       // Sign using standard protobuf messages
       const authInfoBytes = await this.makeAuthInfoBytes(account, {
         amount: fee.amount,
@@ -73,8 +73,8 @@ export default class DefaultSigningAdapter {
         authInfoBytes: signed.authInfoBytes,
         signatures: [fromBase64(signature.signature)],
       }
-    } else {
-        throw new Error('Unable to sign messages with this wallet/signer')
+    }else{
+      throw new Error('Unable to sign message with this wallet/signer')
     }
   }
 
@@ -123,6 +123,7 @@ export default class DefaultSigningAdapter {
       return aminoMessage
     })
   }
+
   makeBodyBytes(messages, memo){
     const anyMsgs = messages.map((m) => this.registry.encodeAsAny(m));
     return TxBody.encode(
