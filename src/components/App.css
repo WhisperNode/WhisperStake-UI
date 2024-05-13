@@ -158,3 +158,8 @@ code p{
     display: none !important;
   }
 }
+
+.dark-bar {
+  background-color: #303030 !important;
+}
+
