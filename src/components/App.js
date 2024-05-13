@@ -40,9 +40,9 @@ import GitHubButton from 'react-github-btn'
 import Logo from '../assets/logo.png'
 import Logo2x from '../assets/logo@2x.png'
 import Logo3x from '../assets/logo@3x.png'
-import LogoWhite from '../assets/logo-white.png'
-import LogoWhite2x from '../assets/logo-white@2x.png'
-import LogoWhite3x from '../assets/logo-white@3x.png'
+import LogoWhite from '../assets/logoWhite.png'
+import LogoWhite2x from '../assets/logoWhite@2x.png'
+import LogoWhite3x from '../assets/logoWhite@3x.png'
 
 import TooltipIcon from './TooltipIcon';
 import Voting from './Voting';
