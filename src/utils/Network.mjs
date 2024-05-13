@@ -14,6 +14,7 @@ class Network {
     this.data = data
     this.enabled = data.enabled
     this.experimental = data.experimental
+    this.ownerAddress = data.ownerAddress
     this.operatorAddresses = operatorAddresses || {}
     this.operatorCount = data.operators?.length || this.estimateOperatorCount()
     this.name = data.path || data.name
@@ -37,6 +38,7 @@ class Network {
       }
     })
     this.online = !this.usingDirectory || this.connectedDirectory()
+    this.disabledWallets = data.disabledWallets || []
   }
 
   connectedDirectory() {
@@ -88,6 +90,9 @@ class Network {
     this.ledgerSupport = this.chain.ledgerSupport ?? true
     this.authzSupport = this.chain.authzSupport
     this.authzAminoSupport = this.chain.authzAminoSupport
+    this.authzAminoGenericOnly = this.chain.authzAminoGenericOnly
+    this.authzAminoLiftedValues = this.chain.authzAminoLiftedValues
+    this.authzAminoExecPreventTypes = this.chain.authzAminoExecPreventTypes
     this.txTimeout = this.data.txTimeout || 60_000
     this.keywords = this.buildKeywords()
 
@@ -154,8 +159,8 @@ class Network {
 
   sortOperators() {
     const random = _.shuffle(this.operators)
-    if (this.data.ownerAddress) {
-      return _.sortBy(random, ({ address }) => address === this.data.ownerAddress ? 0 : 1)
+    if (this.ownerAddress) {
+      return _.sortBy(random, ({ address }) => address === this.ownerAddress ? 0 : 1)
     }
     return random
   }
@@ -172,51 +177,23 @@ class Network {
     )
   }
 
-  suggestChain(){
-    const currency = {
-      coinDenom: this.symbol,
-      coinMinimalDenom: this.denom,
-      coinDecimals: this.decimals
-    }
-    if(this.coinGeckoId){
-      currency.coinGeckoId = this.coinGeckoId
-    }
-    const data = {
-      rpc: this.rpcUrl,
-      rest: this.restUrl,
-      chainId: this.chainId,
-      chainName: this.prettyName,
-      stakeCurrency: currency,
-      bip44: { coinType: this.slip44 },
-      walletUrlForStaking: "https://restake.app/" + this.name,
-      bech32Config: {
-        bech32PrefixAccAddr: this.prefix,
-        bech32PrefixAccPub: this.prefix + "pub",
-        bech32PrefixValAddr: this.prefix + "valoper",
-        bech32PrefixValPub: this.prefix + "valoperpub",
-        bech32PrefixConsAddr: this.prefix + "valcons",
-        bech32PrefixConsPub: this.prefix + "valconspub"
-      },
-      currencies: [currency],
-      feeCurrencies: [{...currency, gasPriceStep: this.gasPriceStep }]
-    }
-    if(this.keplrFeatures()){
-      data.features = this.keplrFeatures()
-    }
-    return data
-  }
-
-  keplrFeatures(){
-    if(this.data.keplrFeatures) return this.data.keplrFeatures
-    if(this.slip44 === 60) return ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"]
-  }
-
   buildKeywords(){
     return _.compact([
       ...this.chain?.keywords || [],
       this.authzSupport && 'authz',
       this.authzAminoSupport && 'full authz ledger',
     ])
+  }
+
+  timeToBlock(height){
+    const params = this.chain.params
+    const currentHeight = params.current_block_height
+    const blockTime = params.actual_block_time
+    return (height - currentHeight) * blockTime
+  }
+
+  assetForDenom(denom){
+    return this.assets.find(el => el.base.denom === denom)
   }
 }
 

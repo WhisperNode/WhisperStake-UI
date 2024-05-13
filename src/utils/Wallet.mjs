@@ -1,5 +1,3 @@
-import SigningClient from "./SigningClient.mjs"
-
 export const messageTypes = [
   '/cosmos.gov.v1beta1.MsgVote',
   '/cosmos.gov.v1beta1.MsgDeposit',
@@ -16,16 +14,16 @@ export const messageTypes = [
 ]
 
 class Wallet {
-  constructor(network, signer, key){
+  constructor(network, signerProvider){
     this.network = network
-    this.signer = signer
-    this.key = key
-    this.name = key?.name
+    this.signerProvider = signerProvider
     this.grants = []
   }
 
-  signingClient(){
-    return SigningClient(this.network, this.signer)
+  async connect(){
+    this.key = await this.signerProvider.connect(this.network)
+    this.name = this.key?.name
+    return this.key
   }
 
   hasPermission(address, action){
@@ -37,38 +35,38 @@ class Wallet {
     })
     message = message || action
     return this.grants.some(grant => {
-      return grant.granter === address && 
+      return grant.granter === address &&
+        (!grant.expiration || Date.parse(grant.expiration) > Date.now()) &&
         grant.authorization["@type"] === "/cosmos.authz.v1beta1.GenericAuthorization" &&
         grant.authorization.msg === message
     })
   }
 
   authzSupport(){
-    return this.signer.signDirect || (this.network.authzAminoSupport && this.signer.signAmino)
+    if(this.signDirectSupport()) return true
+    if(this.network.authzAminoLiftedValues && !this.signerProvider.authzAminoLiftedValueSupport) return false
+
+    return this.network.authzAminoSupport && this.signAminoSupport()
+  }
+
+  signAminoSupportOnly(){
+    return !this.signDirectSupport() && this.signAminoSupport()
+  }
+
+  signDirectSupport(){
+    return this.signerProvider.signDirectSupport()
+  }
+
+  signAminoSupport(){
+    return this.signerProvider.signAminoSupport()
   }
 
   async getAddress(){
-    this.address = this.address || await this.getAccountAddress()
+    if(!this.address){
+      this.address = await this.signerProvider.getAddress()
+    }
 
     return this.address
-  }
-
-  async getAccountAddress(){
-    if(this.signer.getAddress){
-      return this.signer.getAddress()
-    }else{
-      const accounts = await this.getAccounts();
-      return accounts[0].address;
-    }
-  }
-
-  getAccounts(){
-    return this.signer.getAccounts()
-  }
-
-  getIsNanoLedger() {
-    if(!this.key) return false
-    return this.key.isNanoLedger || this.key.isHardware;
   }
 }
 

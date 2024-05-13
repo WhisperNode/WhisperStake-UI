@@ -17,6 +17,7 @@ import Coins from './Coins';
 import GrantModal from './GrantModal';
 import Favourite from './Favourite';
 import Address from './Address'
+import { authzSupportMessage } from '../utils/Helpers.mjs';
 
 function Grants(props) {
   const { address, wallet, network, operators, validators, grants } = props
@@ -137,6 +138,7 @@ function Grants(props) {
     const validator = filter.group === 'granter' && validatorForGrantAddress(grant.grantee)
     const favourite = props.favouriteAddresses && props.favouriteAddresses.find(el => el.address === (filter.group === 'granter' ? grantee : granter))
     const grantId = `${granter}-${grantee}-${authorization['@type']}-${authorization.msg}`
+    const expired = expiration && Date.parse(expiration) < Date.now()
     return (
       <tr key={grantId}>
         <td className="text-break">
@@ -155,7 +157,7 @@ function Grants(props) {
         <td className="d-none d-lg-table-cell">
           {renderGrantData(grant)}
         </td>
-        <td className="d-none d-md-table-cell">
+        <td className={`d-none d-md-table-cell ${expired && 'text-danger'}`}>
           <Moment format="LLL">
             {expiration}
           </Moment>
@@ -210,13 +212,12 @@ function Grants(props) {
       {!props.grantQuerySupport && (
         <AlertMessage variant="warning">Grants cannot be queried on this network yet. <span role="button" className="text-decoration-underline" onClick={props.showFavouriteAddresses}>Save addresses</span> first to see their grants.</AlertMessage>
       )}
-      {props.grantQuerySupport && !walletAuthzSupport && (
+      {props.grantQuerySupport && !walletAuthzSupport && !!props.wallet && (
         <AlertMessage
           variant="warning"
           dismissible={false}
         >
-          <p>Ledger devices can't send Authz transactions just yet. Full support will be enabled as soon as it is possible.</p>
-          <p className="mb-0"><span onClick={() => setShowModal(true)} role="button" className="text-reset text-decoration-underline">A manual workaround is possible using the CLI.</span></p>
+          <p className="mb-0">{authzSupportMessage(props.wallet)}</p>
         </AlertMessage>
         )}
       <AlertMessage message={error} />
