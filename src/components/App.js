@@ -543,7 +543,7 @@ class App extends React.Component {
     return (
       <Container fluid="lg">
         <header className="">
-          <div className="d-flex justify-content-between align-items-center py-3 border-bottom">
+          <div className={`d-flex justify-content-between align-items-center py-3 border-bottom ${this.props.theme === 'dark' ? 'dark-bar' : 'light-bar'}`}>
             <div className="logo d-flex align-items-end text-reset text-decoration-none">
               <span onClick={() => this.props.setActive('networks')} role="button" className="text-reset text-decoration-none">
                 {this.props.theme === 'light'
@@ -572,7 +572,7 @@ class App extends React.Component {
                 changeNetwork={this.props.changeNetwork} />
             </div>
           </div>
-          <div className="d-flex justify-content-between border-bottom">
+          <div className={`d-flex justify-content-between border-bottom ${this.props.theme === 'dark' ? 'dark-bar' : 'light-bar'}`}>
             <Navbar className={`navbar navbar-expand ${this.props.theme === 'dark' ? 'navbar-dark' : 'navbar-light'}`}>
               <div className="justify-content-center">
                 <Nav activeKey={this.props.active} onSelect={(e) => this.props.setActive(e)}>
@@ -808,7 +808,7 @@ class App extends React.Component {
               signingClient={this.state.signingClient} />
           )}
         </div>
-                <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <footer className={`d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ${this.props.theme === 'dark' ? 'dark-bar' : 'light-bar'} `}>
           <a href="https://twitter.com/gh0stdotexe" target="_blank" rel="noreferrer" className="col-md-4 mb-0 link-dark text-decoration-none">
             <span className="d-none d-sm-inline">Operated by </span>gh0st 👻
           </a>
