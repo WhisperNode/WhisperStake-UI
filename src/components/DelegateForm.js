@@ -8,7 +8,7 @@ import {
 
 import { pow, multiply, divide, subtract, bignumber } from 'mathjs'
 
-import AlertMessage from './AlertMessage';
+import AlertMessage from './AlertMessage'
 import Coins from './Coins'
 import { buildExecMessage, coin } from '../utils/Helpers.mjs'
 

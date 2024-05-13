@@ -36,7 +36,7 @@ function ValidatorServices(props) {
       }
     })
   }else{
-      if(Object.entries(validator.public_nodes || {}).length){
+    if(Object.entries(validator.public_nodes || {}).length){
       services.push({
         key: 'nodes',
         tooltip: 'Provides public nodes used by REStake and other apps',

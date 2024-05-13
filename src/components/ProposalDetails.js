@@ -5,6 +5,8 @@ import remarkGfm from 'remark-gfm'
 
 import {
   Table,
+  Tab,
+  Nav
 } from 'react-bootstrap'
 
 import Coins from './Coins';

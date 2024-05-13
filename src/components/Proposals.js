@@ -12,6 +12,7 @@ import { XCircle, ExclamationTriangle } from "react-bootstrap-icons";
 
 import ProposalProgress from './ProposalProgress';
 import { PROPOSAL_STATUSES } from '../utils/Proposal.mjs';
+import TooltipIcon from './TooltipIcon';
 
 function Proposals(props) {
   const { proposals, tallies, votes } = props

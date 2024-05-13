@@ -83,11 +83,9 @@ function REStakeGrantForm(props) {
     }
 
     let messages
-    if (genericGrantOnly) {
-
-    messages = [
-
-    buildGrantMsg("/cosmos.authz.v1beta1.GenericAuthorization",
+    if(genericGrantOnly){
+      messages = [
+        buildGrantMsg("/cosmos.authz.v1beta1.GenericAuthorization",
           GenericAuthorization.encode(GenericAuthorization.fromPartial({
             msg: '/cosmos.staking.v1beta1.MsgDelegate'
           })).finish(),
@@ -118,7 +116,9 @@ function REStakeGrantForm(props) {
         authorization: genericGrantOnly ? {
           '@type': "/cosmos.authz.v1beta1.GenericAuthorization",
           msg: '/cosmos.staking.v1beta1.MsgDelegate'
-        } : {          '@type': "/cosmos.staking.v1beta1.StakeAuthorization",
+        } : {          
+          
+          '@type': "/cosmos.staking.v1beta1.StakeAuthorization",
           max_tokens: maxTokens,
           allow_list: { address: [operator.address] }
         }

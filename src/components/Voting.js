@@ -84,11 +84,12 @@ function Voting(props) {
 
     try {
       let newProposals = await props.queryClient.getProposals()
-            newProposals = await mapSync(newProposals.map(el => {
+          newProposals = await mapSync(newProposals.map(el => {
         return async () => {
           return await Proposal(el)
         }
       }))
+      
       setError()
       setProposals(sortProposals(newProposals))
       setTallies(newProposals.reduce((sum, proposal) => {

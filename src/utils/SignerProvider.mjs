@@ -69,6 +69,7 @@ export default class SignerProvider {
   }
 
 
+
   async getSigner(network) {
     if(!this.signer){
       const { chainId } = network
@@ -121,7 +122,7 @@ export default class SignerProvider {
   getOptions() {
     return {}
   }
-    
+  
   suggestChainData(network){
     const currency = {
       coinDenom: network.symbol,

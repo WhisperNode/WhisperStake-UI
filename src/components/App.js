@@ -107,7 +107,7 @@ class App extends React.Component {
     window.addEventListener("load", this.connectAuto)
     const disabledWallets = this.props.network?.disabledWallets || []
     this.signerProviders.forEach(provider => {
-      if (disabledWallets.includes(provider.name)) return
+      if(disabledWallets.includes(provider.name)) return
 
       const connector = (event) => this.connectAuto(event, provider.name)
       this.signerConnectors[provider.name] = connector
@@ -137,7 +137,7 @@ class App extends React.Component {
     window.removeEventListener("load", this.connectAuto)
     const disabledWallets = this.props.network?.disabledWallets || []
     this.signerProviders.forEach(provider => {
-      if (disabledWallets.includes(provider.name)) return
+      if(disabledWallets.includes(provider.name)) return
 
       window.removeEventListener(provider.keychangeEvent, this.signerConnectors[provider.name])
     })
@@ -224,6 +224,7 @@ class App extends React.Component {
     }
     try {
       const signingClient = SigningClient(network, signerProvider)
+
 
       signingClient.registry.register("/cosmos.authz.v1beta1.MsgGrant", MsgGrant)
       signingClient.registry.register("/cosmos.authz.v1beta1.MsgRevoke", MsgRevoke)
@@ -843,7 +844,7 @@ class App extends React.Component {
             <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="text-reset text-decoration-none d-block mb-2">
               <span className="d-none d-sm-inline">Built with 💚&nbsp;</span> by ECO Stake 🌱
             </a>
-            <a href={`https://${this.props.directory.domain}`} target="_blank" rel="noopener noreferrer" className="text-reset text-decoration-none d-block small">
+            <a href={`https://${this.props.directory.domain}`} target="_blank" className="text-reset text-decoration-none d-block small">
               <span className="d-none d-sm-inline">Interchain APIs from</span> <u>cosmos.directory</u>
             </a>
           </div>

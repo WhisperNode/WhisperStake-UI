@@ -305,7 +305,7 @@ function ValidatorStake(props) {
                               <OperatorLastRestake operator={operator} lastExec={lastExec} />
                             </td>
                           </tr>
-                          {/*<tr>
+                          {/* <tr>
                             <td scope="row">Next REStake</td>
                             <td>
                               <CountdownRestake
@@ -490,7 +490,7 @@ function ValidatorStake(props) {
                 tooltip={
                   !network.authzSupport ? `${props.network.prettyName} doesn't support Authz just yet`
                     : !wallet ? `Connect a wallet to enable REStake`
-                      : !wallet.authzSupport() ?  authzSupportMessage(wallet)
+                      : !wallet.authzSupport() ? authzSupportMessage(wallet)
                         : !delegation?.balance?.amount ? `You must delegate to ${validator.moniker} before they can REStake for you.`
                           : !wallet?.hasPermission(address, 'Grant') && `You don't have permission to do that.`
                 }

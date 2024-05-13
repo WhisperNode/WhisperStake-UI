@@ -20,5 +20,6 @@ export default class LeapSignerProvider extends SignerProvider {
   }
 
   available() {
-    return !!this.provider || isMobile()  }
+    return !!this.provider || isMobile()  
+  }
 }

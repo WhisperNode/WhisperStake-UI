@@ -50,7 +50,7 @@ const Proposal = async (data) => {
     messages = messages.filter(el => el['@type'] !== '/cosmos.gov.v1.MsgExecLegacyContent')
     typeHuman = messages.map(el => el['@type'].split('.').reverse()[0]).join(', ')
   }
-  
+
   if(content){
     title = title || content.title
     description = description || content.description

@@ -426,9 +426,9 @@ class Delegations extends React.Component {
                 variant="warning"
                 dismissible={false}
               >
-               <>
-                <p className="mb-0">{authzSupportMessage(this.props.wallet)}</p>
-               </>
+                <>
+                  <p className="mb-0">{authzSupportMessage(this.props.wallet)}</p>
+                </>
               </AlertMessage>
             </>
           )}
