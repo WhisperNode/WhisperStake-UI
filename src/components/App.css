@@ -25,10 +25,13 @@ header a.moniker{
   text-decoration: underline;
 }
 
+a {
+  color: #ffea6e;
+}
 
-
-
-
+.important-link {
+  color: #ffea6e;
+}
 
 .select-wrapper {
   border: 1px solid #000000; 
@@ -140,12 +143,16 @@ code p{
 
 .nav-pillls .nav-link.active {
   background-color: #FFEA6E;
-  color: #000;
+  color: #000 !important;
 }
 
-.nav-pillls .nav-link {
+.dark-link {
+ color: #ffea6e !important;
 }
 
+.light-link {
+ color: #000 !important;    
+}
 
 @media (hover: hover) {
   .favourite-on:hover .off,
