@@ -225,9 +225,9 @@ function GrantModal(props) {
                 >CLI command</Button>
                 {!loading
                   ? (
-                    <Button type="submit" className="btn btn-primary ms-2" disabled={!valid()}>Create grant</Button>
+                    <Button type="submit" className="bttn bttn-primary ms-2" disabled={!valid()}>Create grant</Button>
                   )
-                  : <Button className="btn btn-primary" type="button" disabled>
+                  : <Button className="bttn bttn-primary" type="button" disabled>
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
                   </Button>
                 }

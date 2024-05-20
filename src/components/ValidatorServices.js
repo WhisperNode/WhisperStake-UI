@@ -97,7 +97,7 @@ function ValidatorServices(props) {
             }
           >
             {service.render ? service.render() : (
-              <a href={service.url} target={service.target || '_blank'}>
+              <a class='important-link' href={service.url} target={service.target || '_blank'}>
                 <img src={service.icon} height={props.height || 20} className="d-block" />
               </a>
             )}

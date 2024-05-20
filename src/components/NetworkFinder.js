@@ -13,7 +13,7 @@ import {
 import networksData from '../networks.json';
 
 const LIGHT_THEME = 'cosmo'
-const DARK_THEME = 'superhero'
+const DARK_THEME = 'cyborg'
 
 function NetworkFinder() {
   const params = useParams();

@@ -137,7 +137,7 @@ function ValidatorProfile(props) {
               {!!validator.description?.security_contact && (
                 <tr>
                   <td scope="row">Contact</td>
-                  <td><a href={`mailto:${validator.description.security_contact}`}>{validator.description.security_contact}</a></td>
+                  <td><a class='important-link' href={`mailto:${validator.description.security_contact}`}>{validator.description.security_contact}</a></td>
                 </tr>
               )}
               {!!validator.description?.website && (

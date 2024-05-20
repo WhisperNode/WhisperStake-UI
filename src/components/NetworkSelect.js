@@ -188,7 +188,8 @@ function NetworkSelect(props) {
                         ...theme.colors,
                         neutral0: 'var(--bs-body-bg)',
                         neutral80: 'var(--bs-body)',
-                        primary25: 'var(--bs-light)'
+                        primary25: 'var(--bs-light)',
+                        primary: '#FFEA6E'
                       },
                     })}
                   />
@@ -200,9 +201,9 @@ function NetworkSelect(props) {
                 <NetworkChecks network={selectedNetwork} error={error} />
                 <div className="text-center mt-4 mb-2">
                   {!loading
-                    ? !error && <Button type="submit" className="btn btn-primary btn-lg">Change network</Button>
+                    ? !error && <Button type="submit" className="bttn bttn-primary">Change network</Button>
                     : (
-                      <Button className="btn-primary btn-lg mr-5" disabled>
+                      <Button className="bttn-primary btn-lg mr-5" disabled>
                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
                         Updating...
                       </Button>

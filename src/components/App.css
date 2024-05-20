@@ -1,3 +1,7 @@
+:root {
+ --bs-primary: #ffea6e !important; 
+}
+
 body{
   --bs-font-sans-serif: Lato,
   -apple-system,
@@ -19,6 +23,82 @@ header a.moniker{
 
 .clipboard.copied{
   text-decoration: underline;
+}
+
+a {
+  color: #ffea6e;
+}
+
+.important-link {
+  color: #ffea6e;
+}
+
+.select-wrapper {
+  border: 1px solid #000000; 
+  border-color: #000000 !important;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.select-wrapper:hover {
+  box-shadow: 0 0 10px 3px #FFEA6E; 
+}
+
+.select-wrapper select option:hover,
+.select-wrapper select option:focus {
+  background-color: #f0f0f0; /* Set background color on hover or focus */
+  color: #333; /* Set text color on hover or focus */
+}
+
+
+
+
+
+.bttn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem 1rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  background-color: #FFEA6E !important;
+  border-color: black !important;
+  color: #000000 !important;
+}
+
+.bttn:hover, .bttn-tertiary:hover {
+  box-shadow: 0 0 10px 3px #FFEA6E; 
+  background-color: #060606 !important;
+  color: #ffffff !important;
+}
+
+.bttn-tertiary {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .375rem 1rem;
+  font-size: 1rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: #000000;
 }
 
 .btn-circle-sm {
@@ -61,6 +141,19 @@ code p{
   display: none !important;
 }
 
+.nav-pillls .nav-link.active {
+  background-color: #FFEA6E;
+  color: #000 !important;
+}
+
+.dark-link {
+ color: #ffea6e !important;
+}
+
+.light-link {
+ color: #000 !important;    
+}
+
 @media (hover: hover) {
   .favourite-on:hover .off,
   .favourite-off:hover .on{
@@ -72,3 +165,8 @@ code p{
     display: none !important;
   }
 }
+
+.dark-bar {
+  background-color: #303030 !important;
+}
+

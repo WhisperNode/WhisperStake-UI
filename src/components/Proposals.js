@@ -104,7 +104,7 @@ function Proposals(props) {
         </td>
         <td>
           <div className="d-grid gap-2 d-md-flex justify-content-end">
-            <Button size="sm" onClick={() => props.showProposal(proposal)}>
+            <Button className='bttn' size="sm" onClick={() => props.showProposal(proposal)}>
               View
             </Button>
           </div>
@@ -120,7 +120,7 @@ function Proposals(props) {
           <div className="input-group">
             <input className="form-control border-right-0 border" onChange={filterProposals} value={filter.keywords} type="text" placeholder="Search.." />
             <span className="input-group-append">
-              <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({...filter, keywords: ''})}>
+              <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({...filter, keywords: ''})}>
                 <XCircle />
               </button>
             </span>
@@ -130,14 +130,14 @@ function Proposals(props) {
           <div className="input-group">
             <input className="form-control border-right-0 border" onChange={filterProposals} value={filter.keywords} type="text" placeholder="Search.." />
             <span className="input-group-append">
-              <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({...filter, keywords: ''})}>
+              <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({...filter, keywords: ''})}>
                 <XCircle />
               </button>
             </span>
           </div>
         </div>
         <div className="d-lg-flex d-none position-absolute mx-auto justify-content-center align-self-center">
-          <Nav fill variant="pills" activeKey={filter.group} className={`${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({...filter, group: e})}>
+          <Nav fill variant="pillls" activeKey={filter.group} className={`${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({...filter, group: e})}>
             <Nav.Item>
               <Nav.Link eventKey="voting" disabled={filteredProposals(proposals, {...filter, group: 'voting'}).length < 1}>Voting Period</Nav.Link>
             </Nav.Item>

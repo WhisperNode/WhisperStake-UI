@@ -179,7 +179,7 @@ function Grants(props) {
                   setError={setError}
                 />
               ) : (
-                <Button className="btn-sm btn-danger mr-5" disabled>
+                <Button className="bttn btn-sm btn-danger mr-5" disabled>
                   <span
                     className="spinner-border spinner-border-sm"
                     role="status"
@@ -232,7 +232,7 @@ function Grants(props) {
             <div className="input-group">
               <input className="form-control border-right-0 border" onChange={filterGrants} value={filter.keywords} type="text" placeholder="Search.." />
               <span className="input-group-append">
-                <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({ ...filter, keywords: '' })}>
+                <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({ ...filter, keywords: '' })}>
                   <XCircle />
                 </button>
               </span>
@@ -242,14 +242,14 @@ function Grants(props) {
             <div className="input-group">
               <input className="form-control border-right-0 border" onChange={filterGrants} value={filter.keywords} type="text" placeholder="Search.." />
               <span className="input-group-append">
-                <button className="btn btn-light text-dark border-left-0 border" type="button" onClick={() => setFilter({ ...filter, keywords: '' })}>
+                <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({ ...filter, keywords: '' })}>
                   <XCircle />
                 </button>
               </span>
             </div>
           </div>
           <div className="d-lg-flex d-none position-absolute mx-auto justify-content-center align-self-center">
-            <Nav fill variant="pills" activeKey={filter.group} className={`${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({ ...filter, group: e })}>
+            <Nav fill variant="pillls" activeKey={filter.group} className={`${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({ ...filter, group: e })}>
               <Nav.Item>
                 <Nav.Link eventKey="granter" disabled={filteredGrants(grants, { ...filter, group: 'granter' }).length < 1}>Granted by me</Nav.Link>
               </Nav.Item>
@@ -265,7 +265,7 @@ function Grants(props) {
             </select>
           </div>
           <div className="flex-fill d-flex justify-content-end">
-            <Button variant="primary" disabled={!wallet?.hasPermission(address, 'Grant')} onClick={() => setShowModal(true)}>
+            <Button className="bttn" variant="primary" disabled={!wallet?.hasPermission(address, 'Grant')} onClick={() => setShowModal(true)}>
               {address && !!walletAuthzSupport ? 'New Grant' : 'CLI/Ledger Instructions'}
             </Button>
           </div>

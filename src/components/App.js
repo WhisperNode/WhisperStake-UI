@@ -12,7 +12,6 @@ import { MsgGrant, MsgRevoke } from "cosmjs-types/cosmos/authz/v1beta1/tx.js";
 
 import {
   Container,
-  Button,
   Dropdown,
   ButtonGroup,
   Navbar,
@@ -37,12 +36,12 @@ import {
 } from 'react-bootstrap-icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import GitHubButton from 'react-github-btn'
-import Logo from '../assets/logo.png'
-import Logo2x from '../assets/logo@2x.png'
-import Logo3x from '../assets/logo@3x.png'
-import LogoWhite from '../assets/logo-white.png'
-import LogoWhite2x from '../assets/logo-white@2x.png'
-import LogoWhite3x from '../assets/logo-white@3x.png'
+
+
+import WhisperNodeBlack from '../assets/WhisperNodeBlack.svg'
+import WhisperNodeWhite from '../assets/WhisperNodeWhite.svg'
+
+import Logo from '../assets/whisper-logo.svg'
 
 import TooltipIcon from './TooltipIcon';
 import Voting from './Voting';
@@ -543,16 +542,16 @@ class App extends React.Component {
     return (
       <Container fluid="lg">
         <header className="">
-          <div className="d-flex justify-content-between align-items-center py-3 border-bottom">
-            <div className="logo d-flex align-items-end text-reset text-decoration-none">
-              <span onClick={() => this.props.setActive('networks')} role="button" className="text-reset text-decoration-none">
-                {this.props.theme === 'light'
-                  ? (
-                    <img src={Logo} srcSet={`${Logo2x} 2x, ${Logo3x} 3x`} alt="REStake" />
-                  ) : (
-                    <img src={LogoWhite} srcSet={`${LogoWhite2x} 2x, ${LogoWhite3x} 3x`} alt="REStake" />
-                  )}
-              </span>
+        <div className={`d-flex justify-content-between align-items-center border-bottom ${this.props.theme === 'dark' ? 'dark-bar' : 'light-bar'}`}>
+          <div className="logo flex flex-row items-center p-2">
+            <span onClick={() => this.props.setActive('networks')} role="button" className="flex items-center">
+              <img src={Logo} alt="WhisperNode logo" width='40px' height='40px' className='m-0' />
+              {this.props.theme === 'light' ? (
+                <img src={WhisperNodeBlack} alt='WhisperNode text logo in Black' width="40%" className='m-2 mt-3' />
+              ) : (
+                <img src={WhisperNodeWhite} alt='WhisperNode text logo in white' width="40%" className='m-2 mt-3'/>
+              )}
+            </span>
               {this.props.directory.testnet && (
                 <small className="ms-2 text-muted">testnet</small>
               )}
@@ -572,7 +571,7 @@ class App extends React.Component {
                 changeNetwork={this.props.changeNetwork} />
             </div>
           </div>
-          <div className="d-flex justify-content-between border-bottom">
+          <div className={`d-flex justify-content-between border-bottom ${this.props.theme === 'dark' ? 'dark-bar' : 'light-bar'}`}>
             <Navbar className={`navbar navbar-expand ${this.props.theme === 'dark' ? 'navbar-dark' : 'navbar-light'}`}>
               <div className="justify-content-center">
                 <Nav activeKey={this.props.active} onSelect={(e) => this.props.setActive(e)}>
@@ -689,7 +688,7 @@ class App extends React.Component {
                       )}
                       <li className="nav-item ps-3 d-flex align-items-center">
                         <Dropdown as={ButtonGroup}>
-                          <Dropdown.Toggle size="sm" className="rounded">
+                          <Dropdown.Toggle className="rounded bttn">
                             {this.state.address ? (
                               <>
                                 <CashCoin className="me-1" />
@@ -700,7 +699,7 @@ class App extends React.Component {
                             {this.state.address && (
                               <div className="d-block d-md-none">
                                 <Dropdown.Header className="text-truncate">{this.addressName()}</Dropdown.Header>
-                                <Dropdown.Item as="button" onClick={() => this.showWalletModal({activeTab: this.state.wallet ? 'wallet' : 'saved'})}>
+                                <Dropdown.Item as="bttn" onClick={() => this.showWalletModal({activeTab: this.state.wallet ? 'wallet' : 'saved'})}>
                                   <Coins
                                     coins={this.state.balance}
                                     asset={this.props.network.baseAsset}
@@ -713,7 +712,7 @@ class App extends React.Component {
                             {this.state.wallet ? (
                               <>
                                 <Dropdown.Item
-                                  as="button"
+                                  as="bttn"
                                   disabled={!this.state.wallet?.hasPermission(this.state.address, 'Send')}
                                   onClick={() => this.setState({ showSendModal: true })}
                                 >
@@ -722,7 +721,7 @@ class App extends React.Component {
                               </>
                             ) : (
                               this.signerProviders.map(provider => {
-                                return <Dropdown.Item as="button" key={provider.key} onClick={() => this.connect(provider.key, true)} disabled={!provider.available()}>Connect {provider.label}</Dropdown.Item>
+                                return <Dropdown.Item as="bttn" key={provider.key} onClick={() => this.connect(provider.key, true)} disabled={!provider.available()}>Connect {provider.label}</Dropdown.Item>
                               })
                             )}
                             <Dropdown.Item as="button" onClick={() => this.showWalletModal({ activeTab: 'saved' })}>Saved Addresses</Dropdown.Item>
@@ -756,6 +755,7 @@ class App extends React.Component {
           )}
           {this.props.active === 'networks' && (
             <Networks
+              theme={this.props.theme}
               networks={Object.values(this.props.networks)}
               changeNetwork={this.props.changeNetwork}
               favourites={this.state.favourites}
@@ -808,9 +808,16 @@ class App extends React.Component {
               signingClient={this.state.signingClient} />
           )}
         </div>
-                <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <a href="https://twitter.com/gh0stdotexe" target="_blank" rel="noreferrer" className="col-md-4 mb-0 link-dark text-decoration-none">
-            <span className="d-none d-sm-inline">Operated by </span>gh0st 👻
+                <footer className={`d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ${this.props.theme === 'dark' ? 'dark-bar' : 'light-bar'} `}>
+          <a href="https://whispernode.com/" target="_blank" rel="noreferrer" className="col-md-4 mb-0 link-dark text-decoration-none">
+            <div className='w-20'>
+            {this.props.theme === 'light'
+              ? (
+                  <img src={WhisperNodeBlack} alt='WhisperNode text logo in Black' width="40%" className='m-2' />
+              ) : (
+                  <img src={WhisperNodeWhite} alt='WhisperNode text logo in white' width="40%" className='m-2'/>
+              )}
+            </div>
           </a>
 
           <div className="col-md-4 align-items-center text-center me-lg-auto">

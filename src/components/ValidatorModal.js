@@ -197,7 +197,7 @@ function ValidatorModal(props) {
           )}
           {activeTab === 'profile' && (
             <div className="d-flex justify-content-end gap-2">
-              <Button variant="primary" onClick={() => setTab('stake')}>
+              <Button className='bttn' variant="primary" onClick={() => setTab('stake')}>
                 Stake
               </Button>
             </div>
