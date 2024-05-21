@@ -57,6 +57,8 @@ import LeapSignerProvider from '../utils/LeapSignerProvider.mjs';
 import KeplrMobileSignerProvider from '../utils/KeplrMobileSignerProvider.mjs';
 import ConnectWalletModal from './ConnectWalletModal';
 import { truncateAddress } from '../utils/Helpers.mjs';
+import CosmostationSignerProvider from '../utils/CosmostationSignerProvider.mjs';
+import SigningClient from '../utils/SigningClient.mjs';
 
 class App extends React.Component {
   constructor(props) {
@@ -69,21 +71,22 @@ class App extends React.Component {
     }
     this.signerProviders = [
       new KeplrSignerProvider(window.keplr),
-      new KeplrMobileSignerProvider({
-        connectModal: {
-          open: (uri, callback) => {
-            this.setState({
-              connectWallet: true,
-              qrCodeUri: uri || this.state.qrCodeUri,
-              qrCodeCallback: callback || this.state.qrCodeCallback
-            })
-          },
-          close: () => {
-            this.setState({ connectWallet: false })
-          }
-        }
-      }),
       new LeapSignerProvider(window.leap),
+      new CosmostationSignerProvider(window.cosmostation?.providers?.keplr, window.cosmostation?.cosmos),
+      // new KeplrMobileSignerProvider({
+      //   connectModal: {
+      //     open: (uri, callback) => {
+      //       this.setState({
+      //         connectWallet: true,
+      //         qrCodeUri: uri || this.state.qrCodeUri,
+      //         qrCodeCallback: callback || this.state.qrCodeCallback
+      //       })
+      //     },
+      //     close: () => {
+      //       this.setState({ connectWallet: false })
+      //     }
+      //   }
+      // }),
       // new FalconSignerProvider(window.falcon)
     ]
     this.signerConnectors = {}
@@ -102,9 +105,12 @@ class App extends React.Component {
   async componentDidMount() {
     this.connect()
     window.addEventListener("load", this.connectAuto)
+    const disabledWallets = this.props.network?.disabledWallets || []
     this.signerProviders.forEach(provider => {
-      const connector = (event) => this.connectAuto(event, provider.key)
-      this.signerConnectors[provider.key] = connector
+      if(disabledWallets.includes(provider.name)) return
+
+      const connector = (event) => this.connectAuto(event, provider.name)
+      this.signerConnectors[provider.name] = connector
       window.addEventListener(provider.keychangeEvent, connector)
     })
   }
@@ -113,9 +119,10 @@ class App extends React.Component {
     if (!this.props.network) return
 
     if (this.props.network !== prevProps.network) {
+      this.clearRefreshInterval()
       this.setState({ balance: undefined, address: undefined, wallet: undefined, grants: undefined, error: undefined })
       this.connect()
-    }else if(this.state.address !== prevState.address){
+    }else if(this.state.address != prevState.address){
       this.clearRefreshInterval()
       this.setState({ balance: undefined, grants: undefined, error: undefined })
       this.getBalance()
@@ -128,8 +135,11 @@ class App extends React.Component {
   componentWillUnmount() {
     this.clearRefreshInterval()
     window.removeEventListener("load", this.connectAuto)
+    const disabledWallets = this.props.network?.disabledWallets || []
     this.signerProviders.forEach(provider => {
-      window.removeEventListener(provider.keychangeEvent, this.signerConnectors[provider.key])
+      if(disabledWallets.includes(provider.name)) return
+
+      window.removeEventListener(provider.keychangeEvent, this.signerConnectors[provider.name])
     })
   }
 
@@ -142,7 +152,9 @@ class App extends React.Component {
   }
 
   getSignerProvider(providerKey){
-    return providerKey && this.signerProviders.find(el => el.key === providerKey)
+    if(this.props.network?.disabledWallets?.includes(providerKey)) return
+
+    return providerKey && this.signerProviders.find(el => el.name === providerKey)
   }
 
   disconnect() {
@@ -179,7 +191,7 @@ class App extends React.Component {
 
     if(!signerProvider) return
 
-    providerKey = signerProvider.key
+    providerKey = signerProvider.name
 
     if (manual && !signerProvider.available()) {
       return this.setState({
@@ -196,24 +208,24 @@ class App extends React.Component {
 
     this.setState({ signerProvider })
 
-    let key
+    const wallet = new Wallet(network, signerProvider)
     try {
-      key = await signerProvider.connect(network);
+      const key = await wallet.connect();
       if (!network.ledgerSupport && (key.isNanoLedger || key.isHardware)) {
         throw new Error('Ledger support is coming soon')
       }
     } catch (e) {
       return this.setState({
-        error: `Failed to connect to ${signerProvider?.label || 'signer'}: ${e.message}`,
+        error: `Unable to connect to ${signerProvider?.label || 'signer'}: ${e.message}`,
         address: null,
         wallet: null,
         signingClient: null
       })
     }
     try {
-      const offlineSigner = await signerProvider.getSigner(network)
-      const wallet = new Wallet(network, offlineSigner, key)
-      const signingClient = wallet.signingClient()
+      const signingClient = SigningClient(network, signerProvider)
+
+
       signingClient.registry.register("/cosmos.authz.v1beta1.MsgGrant", MsgGrant)
       signingClient.registry.register("/cosmos.authz.v1beta1.MsgRevoke", MsgRevoke)
 
@@ -344,6 +356,9 @@ class App extends React.Component {
         if (address !== state.address) return {}
         return { grantQuerySupport }
       })
+      if(grantQuerySupport){
+        return this.setState({ error: "Failed to load all grants" })
+      }
     }
 
     let addresses = this.props.operators.map(el => el.botAddress)
@@ -699,7 +714,7 @@ class App extends React.Component {
                             {this.state.address && (
                               <div className="d-block d-md-none">
                                 <Dropdown.Header className="text-truncate">{this.addressName()}</Dropdown.Header>
-                                <Dropdown.Item as="bttn" onClick={() => this.showWalletModal({activeTab: this.state.wallet ? 'wallet' : 'saved'})}>
+                                <Dropdown.Item as="button" className="bttn" onClick={() => this.showWalletModal({activeTab: this.state.wallet ? 'wallet' : 'saved'})}>
                                   <Coins
                                     coins={this.state.balance}
                                     asset={this.props.network.baseAsset}
@@ -712,7 +727,8 @@ class App extends React.Component {
                             {this.state.wallet ? (
                               <>
                                 <Dropdown.Item
-                                  as="bttn"
+                                  as="button"
+                                  className="bttn"
                                   disabled={!this.state.wallet?.hasPermission(this.state.address, 'Send')}
                                   onClick={() => this.setState({ showSendModal: true })}
                                 >
@@ -720,9 +736,13 @@ class App extends React.Component {
                                 </Dropdown.Item>
                               </>
                             ) : (
-                              this.signerProviders.map(provider => {
-                                return <Dropdown.Item as="bttn" key={provider.key} onClick={() => this.connect(provider.key, true)} disabled={!provider.available()}>Connect {provider.label}</Dropdown.Item>
-                              })
+                                <>
+                                {this.signerProviders.map(provider => {
+                                  const disabledWallets = this.props.network?.disabledWallets || []
+                                  return <Dropdown.Item as="button" key={provider.name} onClick={() => this.connect(provider.name, true)} disabled={!provider.available() || disabledWallets.includes(provider.name)}>Connect {provider.label}</Dropdown.Item>
+                                })}
+                                <Dropdown.Divider />
+                              </>
                             )}
                             <Dropdown.Item as="button" onClick={() => this.showWalletModal({ activeTab: 'saved' })}>Saved Addresses</Dropdown.Item>
                             {this.state.address && (
@@ -775,6 +795,7 @@ class App extends React.Component {
                 validator={this.props.validator}
                 grants={this.state.grants}
                 getBalance={this.getBalance}
+                showAbout={() => this.setState({ showAbout: true })}
                 onGrant={this.onGrant}
                 onRevoke={this.onRevoke}
                 queryClient={this.props.queryClient}
@@ -824,7 +845,7 @@ class App extends React.Component {
             <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="text-reset text-decoration-none d-block mb-2">
               <span className="d-none d-sm-inline">Built with 💚&nbsp;</span> by ECO Stake 🌱
             </a>
-            <a href={`https://${this.props.directory.domain}`} target="_blank" rel="noopener noreferrer" className="text-reset text-decoration-none d-block small">
+            <a href={`https://${this.props.directory.domain}`} target="_blank" className="text-reset text-decoration-none d-block small">
               <span className="d-none d-sm-inline">Interchain APIs from</span> <u>cosmos.directory</u>
             </a>
           </div>

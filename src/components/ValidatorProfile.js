@@ -40,7 +40,7 @@ function ValidatorProfile(props) {
     const uptime = <span>{_.round(period.uptime * 100, 2)}% <small>(missed {blockPeriod.missed.toLocaleString()} of {blockPeriod.blocks.toLocaleString()} blocks)</small></span>
     if(!validator.slashes) return uptime
 
-    const slashes = <small>{validator.slashes.length < 1 ? <>Never slashed</> : <>Slashed {validator.slashes.length} times ({_.round(multiply(validator.slashes.reduce((sum, s) => add(sum, s.fraction), 0), 100), 1)}% total stake)</>}</small>
+    const slashes = <small>{validator.slashes.length < 1 ? <>Never slashed</> : <>Slashed {validator.slashes.length} times ({_.round(multiply(validator.slashes.reduce((sum, s) => add(sum, s.fraction), 0), 100), 2)}% total stake)</>}</small>
     return <span>{uptime}<br />{slashes}</span>
   }
 
@@ -214,7 +214,7 @@ function ValidatorProfile(props) {
                         </td>
                         <td className="list-group list-group-flush flex-fill">
                           {nodes.map(api => {
-                            return <a href={api.address} target="_blank" rel="noopener noreferrer" className="text-reset text-decoration-underline">{api.address}</a>
+                            return <a href={api.address} target="_blank" className="text-reset text-decoration-underline">{api.address}</a>
                           }).reduce((prev, curr) => [prev, <br />, curr])}
                         </td>
                       </tr>

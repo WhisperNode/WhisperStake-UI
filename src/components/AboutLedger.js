@@ -46,7 +46,7 @@ function AboutLedger(props) {
             <p>
               {Object.entries(binaries).map(([key, item]) => {
                 return (
-                  <span key={key}><strong>{key}:</strong> <a href={item} target="_blank" rel="noopener noreferrer">{item}</a><br /></span>
+                  <span key={key}><strong>{key}:</strong> <a href={item} target="_blank">{item}</a><br /></span>
                 )
               })}</p>
             <h6>Alternative install from source</h6>
@@ -57,7 +57,7 @@ function AboutLedger(props) {
         git_repo
           ? (
             <>
-              <p>Clone and install the <code>{daemon_name || network.prettyName}</code> CLI client from <a href={git_repo} target="_blank" rel="noopener noreferrer">{git_repo}</a>. The standard Tendermint installation process is detailed below, but you might need to check the documentation for project specific install.</p>
+              <p>Clone and install the <code>{daemon_name || network.prettyName}</code> CLI client from <a href={git_repo} target="_blank">{git_repo}</a>. The standard Tendermint installation process is detailed below, but you might need to check the documentation for project specific install.</p>
               <pre className="pre-scrollable text-wrap"><code>
                 <p>git clone {git_repo} restake_{network.name}</p>
                 <p>cd restake_{network.name}</p>

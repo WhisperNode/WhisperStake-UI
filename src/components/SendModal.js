@@ -48,6 +48,7 @@ function SendModal(props) {
     if(!valid()) return
 
     showLoading(true)
+    setError(null)
 
 
     const coinValue = coinAmount()

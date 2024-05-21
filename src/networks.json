@@ -5,13 +5,17 @@
     "ownerAddress": "osmovaloper1md9f5524vtmrn64lyv2pdfn7cnkjkklf44vtjz",
     "default": true,
     "maxPerDay": 1,
-    "apiVersions": {
-      "gov": "v1beta1"
-    }
+    "authzAminoExecPreventTypes": [
+      "/cosmos.gov.",
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "juno",
-    "ownerAddress": "junovaloper193xl2tqh2tjkld2zv49ku5s44ee4qmgr65jcep"
+    "ownerAddress": "junovaloper193xl2tqh2tjkld2zv49ku5s44ee4qmgr65jcep",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "cosmoshub",
@@ -27,17 +31,24 @@
   },
   {
     "name": "chihuahua",
-    "ownerAddress": "chihuahuavaloper1m2dxkn94t97m7ah65hv4tg2xu0j2a2k4fdee20"
+    "ownerAddress": "chihuahuavaloper1m2dxkn94t97m7ah65hv4tg2xu0j2a2k4fdee20",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "gravitybridge"
   },
   {
     "name": "regen",
-    "ownerAddress": "regenvaloper1c4y3j05qx652rnxm5mg4yesqdkmhz2f6dl7hhk"
+    "ownerAddress": "regenvaloper1c4y3j05qx652rnxm5mg4yesqdkmhz2f6dl7hhk",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
-    "name": "terra"
+    "name": "terra",
+    "authzAminoLiftedValues": false
   },
   {
     "name": "terra2",
@@ -62,20 +73,26 @@
   {
     "name": "desmos",
     "ownerAddress":"desmosvaloper1lf3fg79gf2qf6ept7ec22kjd8s6gj3swr2ca0v",
-    "authzSupport": true,
-    "authzAminoSupport": true
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "cryptoorgchain",
-    "ownerAddress": "crocncl10mfs428fyntu296dgh5fmhvdzrr2stlaekcrp9"
+    "ownerAddress": "crocncl10mfs428fyntu296dgh5fmhvdzrr2stlaekcrp9",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "evmos",
     "ownerAddress": "evmosvaloper1chx7v975g72xuw8kdpjt94dh35daqqfyc37kys",
     "txTimeout": 120000,
     "maxPerDay": 1,
-    "authzAminoSupport": false
-  },
+    "gasPrice": "75000000000aevmos",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]  },
   {
     "name": "sifchain"
   },
@@ -88,7 +105,14 @@
   },
   {
     "name": "comdex",
-    "ownerAddress": "comdexvaloper19qz6sgw7llrft2x05lp4swy569e5sla6gl3cuu"
+    "ownerAddress": "comdexvaloper19qz6sgw7llrft2x05lp4swy569e5sla6gl3cuu",
+    "apiVersions": {
+        "gov": "v1beta1"
+    },
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ],
+    "authzAminoGenericOnly": true
   },
   {
     "name": "cheqd",
@@ -126,7 +150,7 @@
   },
   {
     "name": "secretnetwork",
-    "authzAminoSupport": true,
+    "authzAminoGenericOnly": false,
     "ownerAddress":"secretvaloper16k26akna7h295rfjx3278s7xusnt736vy437y8"
   },
   {
@@ -162,7 +186,13 @@
   },
   {
     "name": "kujira",
-    "ownerAddress": "kujiravaloper1med39q63mwzxgqdzus70lp98krdrfmhhm4v8al"
+    "ownerAddress": "kujiravaloper1med39q63mwzxgqdzus70lp98krdrfmhhm4v8al",
+    "disabledWallets": [
+        "cosmostation"
+    ],
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "genesisl1",
@@ -202,7 +232,10 @@
   },
   {
     "name": "teritori",
-    "ownerAddress": "torivaloper1tjh6wpj6d9kpkfrcyglksevkhhtk9gm7cw7eku"
+    "ownerAddress": "torivaloper1tjh6wpj6d9kpkfrcyglksevkhhtk9gm7cw7eku",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "rebus"
@@ -219,32 +252,47 @@
   },
   {
     "name": "mars",
-    "ownerAddress": "marsvaloper14vngc0z9ymvjfdusxt9v4g5we9tckzg2637a44"
+    "ownerAddress": "marsvaloper14vngc0z9ymvjfdusxt9v4g5we9tckzg2637a44",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "planq"
   },
   {
     "name": "injective",
-    "ownerAddress": "injvaloper1cutynk8xve9lqmwt4nn575x95v9849zj6p9564"
+    "ownerAddress": "injvaloper1cutynk8xve9lqmwt4nn575x95v9849zj6p9564",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "xpla"
   },
   {
     "name": "kyve",
-    "ownerAddress": "kyvevaloper1egqphd8yjdfv84fl825grwgna0pf2emagdmnz8"
+    "ownerAddress": "kyvevaloper1egqphd8yjdfv84fl825grwgna0pf2emagdmnz8",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "quicksilver",
-    "maxPerDay": 1
+    "maxPerDay": 1,
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "chain4energy"
   },
   {
     "name": "coreum",
-    "ownerAddress": "corevaloper1py9v5f7e4aaka55lwtthk30scxhnqfa6agwxt8"
+    "ownerAddress": "corevaloper1py9v5f7e4aaka55lwtthk30scxhnqfa6agwxt8",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
   },
   {
     "name": "nois",
@@ -252,7 +300,35 @@
   },
   {
     "name": "omniflixhub",
-    "ownerAddress": "omniflixvaloper19d782trtcj4yq9lm7nxy3xs3xjg8vjktn3sjsd"
+    "ownerAddress": "omniflixvaloper19d782trtcj4yq9lm7nxy3xs3xjg8vjktn3sjsd",
+    "authzAminoExecPreventTypes": [
+      "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
+    ]
+  },
+  {
+    "name": "qwoyn"
+  },
+  {
+    "name": "neutron",
+    "enabled": false
+  },
+  {
+    "name": "dydx",
+    "ownerAddress": "dydxvaloper15wphegl8esn7r2rgj9j3xf870v78lxg8yfjn95"
+  },
+  {
+    "name": "celestia",
+    "ownerAddress": "celestiavaloper1dsyuamue2p3l0z753pyrtegs52ftrg960re06j"
+  },
+  {
+    "name": "dymension",
+    "ownerAddress": "dymvaloper1z2uv28s9ewxg0ch45m2v27ke76tf7hvw398ggu"
+  },
+  {
+    "name": "humans"
+  },
+  {
+    "name": "saga"
   },
   {
     "name": "aura",
