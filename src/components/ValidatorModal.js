@@ -163,6 +163,7 @@ function ValidatorModal(props) {
                 </Tab.Pane>
                 <Tab.Pane eventKey="stake">
                   <ValidatorStake
+                    theme={props.theme}
                     network={network}
                     validator={validator}
                     operator={operator}
