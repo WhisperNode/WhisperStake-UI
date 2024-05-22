@@ -26,7 +26,7 @@ import RevokeGrant from './RevokeGrant';
 import ValidatorStatus from './ValidatorStatus'
 
 function ValidatorStake(props) {
-  const { network, validator, operator, balance, wallet, address, lastExec } = props
+  const { network, validator, operator, balance, wallet, address, lastExec, theme } = props
   const [action, setAction] = useState(props.action)
   const [selectedValidator, setSelectedValidator] = useState();
   const [loading, setLoading] = useState(false)
@@ -169,17 +169,17 @@ function ValidatorStake(props) {
                 <tbody>
                   {!validator.active && (
                     <tr>
-                      <td scope="row">Status</td>
-                      <td><ValidatorStatus validator={validator} /></td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Status</td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} ><ValidatorStatus validator={validator} /></td>
                     </tr>
                   )}
                   {network.apyEnabled && (
                     <>
                       <tr>
-                        <td scope="row">
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">
                           APR
                         </td>
-                        <td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                           <div className="d-flex align-items-center">
                             <span>{round(validator.getAPR() * 100, 2).toLocaleString()}%</span>
                             <TooltipIcon
@@ -196,10 +196,10 @@ function ValidatorStake(props) {
                       </tr>
                       {operator && (
                         <tr>
-                          <td scope="row">
+                          <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">
                             APY
                           </td>
-                          <td>
+                          <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                             <div className="d-flex align-items-center">
                               <span>{round(validator.getAPY(operator) * 100, 2).toLocaleString()}%</span>
                               <TooltipIcon
@@ -219,8 +219,8 @@ function ValidatorStake(props) {
                   )}
                   {address && (
                     <tr>
-                      <td scope="row">Delegation</td>
-                      <td className="text-break">
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Delegation</td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-break`}>
                         {!props.isLoading('delegations') ? (
                           <Coins coins={delegation?.balance || { amount: 0, denom: network.denom }} asset={network.baseAsset} fullPrecision={true} />
                         ) : (
@@ -233,8 +233,8 @@ function ValidatorStake(props) {
                   )}
                   {delegation?.balance?.amount && (
                     <tr>
-                      <td scope="row">Rewards</td>
-                      <td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Rewards</td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                         {!props.isLoading('rewards') ? (
                           <Coins coins={{ amount: reward, denom: network.denom }} asset={network.baseAsset} fullPrecision={true} />
                         ) : (
@@ -247,8 +247,8 @@ function ValidatorStake(props) {
                   )}
                   {!!commission && (
                     <tr>
-                      <td scope="row">Commission</td>
-                      <td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Commission</td>
+                      <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                         {!props.isLoading('commission') ? (
                           <Coins coins={{ amount: commission, denom: network.denom }} asset={network.baseAsset} fullPrecision={true} />
                         ) : (
@@ -266,8 +266,8 @@ function ValidatorStake(props) {
               <Table>
                 <tbody>
                   <tr>
-                    <td scope="row">REStake</td>
-                    <td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">REStake</td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                       {operator ? (
                         <TooltipIcon
                           icon={<CheckCircle className="text-success" />}
@@ -286,22 +286,22 @@ function ValidatorStake(props) {
                   {operator && (
                     <>
                       <tr>
-                        <td scope="row">Frequency</td>
-                        <td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Frequency</td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                           <span>{operator.runTimesString()}</span>
                         </td>
                       </tr>
                       <tr>
-                        <td scope="row">Minimum Reward</td>
-                        <td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Minimum Reward</td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                           <Coins coins={minimumReward()} asset={network.baseAsset} fullPrecision={true} hideValue={true} />
                         </td>
                       </tr>
                       {network.authzSupport && (
                         <>
                           <tr>
-                            <td scope="row">Last REStake</td>
-                            <td>
+                            <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Last REStake</td>
+                            <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                               <OperatorLastRestake operator={operator} lastExec={lastExec} />
                             </td>
                           </tr>
@@ -317,14 +317,14 @@ function ValidatorStake(props) {
                         </>
                       )}
                       <tr>
-                        <td scope="row">REStake Address</td>
-                        <td className="text-break"><Address address={operator.botAddress} /></td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">REStake Address</td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-break`}><Address address={operator.botAddress} /></td>
                       </tr>
                       {props.address && (
                         <>
                           <tr>
-                            <td scope="row">Grant Status</td>
-                            <td>
+                            <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Grant Status</td>
+                            <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} >
                               {!props.isLoading('grants') ? (
                                 grantsValid
                                   ? <span><span className="text-success">Active</span><br /><small className="text-muted">expires {expiryDate().fromNow()}</small></span>
@@ -344,7 +344,7 @@ function ValidatorStake(props) {
                           </tr>
                           {grantsExist && (
                             <tr>
-                              <td scope="row">Grant Remaining</td>
+                              <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}  scope="row">Grant Remaining</td>
                               <td className={!reward || maxTokens == null || larger(maxTokens, reward) ? 'text-success' : 'text-danger'}>
                                 {maxTokens ? (
                                   <Coins coins={{ amount: maxTokens, denom: network.denom }} asset={network.baseAsset} fullPrecision={true} />

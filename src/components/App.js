@@ -804,6 +804,7 @@ class App extends React.Component {
           }
           {this.props.active === 'voting' && (
             <Voting
+              theme={this.props.theme}
               network={this.props.network}
               address={this.state.address}
               wallet={this.state.wallet}

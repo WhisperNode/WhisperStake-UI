@@ -14,7 +14,7 @@ import Proposal from '../utils/Proposal.mjs';
 import Vote from '../utils/Vote.mjs';
 
 function Voting(props) {
-  const { address, wallet, network } = props
+  const { address, wallet, network, theme } = props
   const [showModal, setShowModal] = useState()
   const [proposal, setProposal] = useState()
   const [proposals, setProposals] = useState()
@@ -186,6 +186,7 @@ function Voting(props) {
       {alerts}
       <div className="mb-2">
         <Proposals
+          theme={theme}
           network={network}
           address={address}
           proposals={proposals}

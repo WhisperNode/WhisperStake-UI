@@ -51,39 +51,39 @@ function ValidatorProfile(props) {
           <Table>
             <tbody>
               <tr>
-                <td scope="row">Validator Address</td>
-                <td className="text-break"><Address address={validator.operator_address} /></td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Validator Address</td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-break`}><Address address={validator.operator_address} /></td>
               </tr>
               {!validator.active && (
                 <tr>
-                  <td scope="row">Status</td>
-                  <td><ValidatorStatus validator={validator} /></td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Status</td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}><ValidatorStatus validator={validator} /></td>
                 </tr>
               )}
               {uptime() && (
                 <tr>
-                  <td scope="row">Uptime</td>
-                  <td>{uptime()}</td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Uptime</td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>{uptime()}</td>
                 </tr>
               )}
               <tr>
-                <td scope="row">REStake</td>
-                <td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">REStake</td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                   {!!operator ? (
                     <Table className="m-0 table-sm">
                       <tbody className="small">
                         <tr>
-                          <td>Frequency</td>
-                          <td>{operator.runTimesString()}</td>
+                          <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>Frequency</td>
+                          <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>{operator.runTimesString()}</td>
                         </tr>
                         <tr>
-                          <td className={network.authzSupport ? '' : 'border-bottom-0'}>Minimum rewards</td>
-                          <td className={network.authzSupport ? '' : 'border-bottom-0'}><Coins coins={minimumReward()} asset={network.baseAsset} fullPrecision={true} hideValue={true} /></td>
+                          <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} ${network.authzSupport ? '' : 'border-bottom-0'}`}>Minimum rewards</td>
+                          <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} ${network.authzSupport ? '' : 'border-bottom-0'}`}><Coins coins={minimumReward()} asset={network.baseAsset} fullPrecision={true} hideValue={true} /></td>
                         </tr>
                         {network.authzSupport && (
                           <tr>
-                            <td className="border-bottom-0">Last REStake</td>
-                            <td className={'border-bottom-0'}>
+                            <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} border-bottom-0`}>Last REStake</td>
+                            <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} border-bottom-0`}>
                               <OperatorLastRestake operator={operator} lastExec={lastExec} />
                             </td>
                           </tr>
@@ -97,18 +97,18 @@ function ValidatorProfile(props) {
               </tr>
               {network.apyEnabled && (
                 <tr>
-                  <td scope="row">
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">
                     <TooltipIcon
                       icon={<span className="text-decoration-underline">APY</span>}
                       identifier="delegations-apy"
                     >
-                      <div className="mt-2 text-center">
+                      <div className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} mt-2 text-center`}>
                         <p>Based on commission, compounding frequency and estimated block times.</p>
                         <p>This is an estimate and best case scenario.</p>
                       </div>
                     </TooltipIcon>
                   </td>
-                  <td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                     {props.validatorApy[validator.operator_address]
                       ? <span>{round(props.validatorApy[validator.operator_address] * 100, 2).toLocaleString()}%</span>
                       : "-"
@@ -117,16 +117,16 @@ function ValidatorProfile(props) {
                 </tr>
               )}
               <tr>
-                <td scope="row">Commission</td>
-                <td><span>{validator.commission.commission_rates.rate * 100}%</span></td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Commission</td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}><span>{validator.commission.commission_rates.rate * 100}%</span></td>
               </tr>
               <tr>
-                <td scope="row">Rank</td>
-                <td><span>#{validator.rank}</span></td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Rank</td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}><span>#{validator.rank}</span></td>
               </tr>
               <tr>
-                <td scope="row">Voting power</td>
-                <td><span><Coins coins={{ amount: validator.tokens, denom: network.denom }} asset={network.baseAsset} /></span></td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Voting power</td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}><span><Coins coins={{ amount: validator.tokens, denom: network.denom }} asset={network.baseAsset} /></span></td>
               </tr>
             </tbody>
           </Table>
@@ -136,45 +136,45 @@ function ValidatorProfile(props) {
             <tbody>
               {!!validator.description?.security_contact && (
                 <tr>
-                  <td scope="row">Contact</td>
-                  <td><a class='important-link' href={`mailto:${validator.description.security_contact}`}>{validator.description.security_contact}</a></td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Contact</td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}><a class='important-link' href={`mailto:${validator.description.security_contact}`}>{validator.description.security_contact}</a></td>
                 </tr>
               )}
               {!!validator.description?.website && (
                 <tr>
-                  <td scope="row">Website</td>
-                  <td className="text-break"><ValidatorLink className="text-decoration-underline" validator={validator}>{validator.description.website}</ValidatorLink></td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} scope="row">Website</td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-break`}><ValidatorLink className="text-decoration-underline" validator={validator}>{validator.description.website}</ValidatorLink></td>
                 </tr>
               )}
               <tr>
-                <td className="align-middle" scope="row">Profiles</td>
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} align-middle`} scope="row">Profiles</td>
                 <td>
                   <ValidatorServices validator={validator} network={network} theme={props.theme} exclude={['nodes', 'skip']} />
                 </td>
               </tr>
               {validator?.path && (
                 <tr>
-                  <td className="align-middle" scope="row">Networks</td>
-                  <td className="w-75">
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} align-middle`} scope="row">Networks</td>
+                  <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} w-75`}>
                     <ValidatorNetworks validator={validator} registryData={registryData} network={network} networks={networks} />
                   </td>
                 </tr>
               )}
             </tbody>
           </Table>
-          <p className="mb-4">
+          <p className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} mb-4`}>
             {validator.description?.details}
           </p>
           {!!network.chain.services?.skip && !!validator.services?.skip && (
             <>
-              <p className="mb-2 d-flex align-items-center gap-1">
+              <p className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} mb-2 d-flex align-items-center gap-1`}>
                 <a href="https://skip.money" target="_blank"><img src={props.theme === 'dark' ? SkipWhiteIcon : SkipIcon} height={14} className="d-block" /></a><strong>Skip MEV</strong>
               </p>
               <Table className="table-sm">
                 <tbody>
                   <tr>
-                    <td>Status</td>
-                    <td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>Status</td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                       {validator.services.skip.active ? (
                         <>
                           <span className="text-success">Active</span>
@@ -184,15 +184,15 @@ function ValidatorProfile(props) {
                     </td>
                   </tr>
                   <tr>
-                    <td>Network profit</td>
-                    <td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>Network profit</td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                       {100 - validator.services.skip.val_payment_percentage}%<br />
                       <Coins coins={{ amount: validator.services.skip.network_profit, denom: network.denom }} asset={network.baseAsset} hideValue={true} />
                     </td>
                   </tr>
                   <tr>
-                    <td className="border-bottom-0">Validator profit</td>
-                    <td className={'border-bottom-0'}>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} border-bottom-0`}>Validator profit</td>
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} border-bottom-0`}>
                       {validator.services.skip.val_payment_percentage}%<br />
                       <Coins coins={{ amount: validator.services.skip.val_profit, denom: network.denom }} asset={network.baseAsset} hideValue={true} />
                     </td>
@@ -203,16 +203,16 @@ function ValidatorProfile(props) {
           )}
           {Object.entries(validator.public_nodes || {}).length > 0 && (
             <>
-              <p className="mb-2 d-flex align-items-center gap-1"><HeartPulse /><strong>Public Nodes</strong></p>
+              <p className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} mb-2 d-flex align-items-center gap-1`}><HeartPulse /><strong>Public Nodes</strong></p>
               <Table className="table-sm">
                 <tbody>
                   {Object.entries(validator.public_nodes).map(([type, nodes]) => {
                     return (
                       <tr key={type}>
-                        <td>
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                           {type.toUpperCase()}
                         </td>
-                        <td className="list-group list-group-flush flex-fill">
+                        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} list-group list-group-flush flex-fill`}>
                           {nodes.map(api => {
                             return <a href={api.address} target="_blank" className="text-reset text-decoration-underline">{api.address}</a>
                           }).reduce((prev, curr) => [prev, <br />, curr])}
