@@ -310,7 +310,7 @@ function Validators(props) {
             <input className="form-control border-right-0 border" onChange={filterValidators} value={filter.keywords} type="text" placeholder="Search.." style={{maxWidth: 150}} />
             <span className="input-group-append">
               <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({keywords: ''})}>
-                <XCircle className="text-black"/>
+                <XCircle/>
               </button>
             </span>
           </div>
