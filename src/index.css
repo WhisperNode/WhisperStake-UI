@@ -1,4 +1,21 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+@layer module, state;
+
+@layer state {
+  .nav-link {
+    color: black;
+  }
+
+  .bttn:hover, .bttn-tertiary:hover {
+    box-shadow: 0 0 10px 3px #FFEA6E !important; 
+    background-color: #060606 !important;
+    color: #ffffff !important;
+  }
+}
+
+@layer module {
+
+}
 
 body {
   margin: 0;

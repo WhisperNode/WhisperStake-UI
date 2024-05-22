@@ -92,6 +92,8 @@ function Voting(props) {
       
       setError()
       setProposals(sortProposals(newProposals))
+      //console.log("SUM", sum)
+      //console.log("proposal:", proposal)
       setTallies(newProposals.reduce((sum, proposal) => {
         if (!_.every(Object.values(proposal.final_tally_result), el => el === '0')) {
           sum[proposal.proposal_id] = proposal.final_tally_result
@@ -186,6 +188,7 @@ function Voting(props) {
       {alerts}
       <div className="mb-2">
         <Proposals
+          theme={theme}
           network={network}
           address={address}
           proposals={proposals}

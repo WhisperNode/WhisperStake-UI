@@ -17,7 +17,7 @@ import AlertMessage from './AlertMessage';
 import Vote from '../utils/Vote.mjs';
 
 function ProposalDetails(props) {
-  const { proposal, tally, vote, network } = props
+  const { proposal, tally, vote, network, theme } = props
   const [granter, setGranter] = useState()
   const [granterVote, setGranterVote] = useState()
   const [error, setError] = useState()

@@ -1,5 +1,6 @@
 :root {
  --bs-primary: #ffea6e !important; 
+ --bs-blue: #ffea6e !important;
 }
 
 body{
@@ -31,6 +32,18 @@ a {
 
 .important-link {
   color: #ffea6e;
+}
+
+.disabled {
+  opacity: 50%;
+}
+
+.dark-validator {
+  color: #FFF;
+}
+
+.light-validator {
+  color: #000;
 }
 
 .select-wrapper {
@@ -142,7 +155,7 @@ code p{
 }
 
 .nav-pillls .nav-link.active {
-  background-color: #FFEA6E;
+  background-color: #FFEA6E !important;
   color: #000 !important;
 }
 
