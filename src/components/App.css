@@ -33,6 +33,18 @@ a {
   color: #ffea6e;
 }
 
+.disabled {
+  opacity: 50%;
+}
+
+.dark-validator {
+  color: #FFF;
+}
+
+.light-validator {
+  color: #000;
+}
+
 .select-wrapper {
   border: 1px solid #000000; 
   border-color: #000000 !important;
@@ -52,7 +64,9 @@ a {
 }
 
 
-
+.markdown-container a {
+  color: #FFEA6E;
+}
 
 
 .bttn {
@@ -142,7 +156,7 @@ code p{
 }
 
 .nav-pillls .nav-link.active {
-  background-color: #FFEA6E;
+  background-color: #FFEA6E !important;
   color: #000 !important;
 }
 

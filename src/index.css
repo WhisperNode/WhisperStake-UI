@@ -1,15 +1,46 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+@layer base, accent;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer accent {
+  .bttn:hover, .bttn-tertiary:hover {
+    box-shadow: 0 0 10px 3px #FFEA6E !important; 
+    background-color: #060606 !important;
+    color: #ffffff !important;
+  }
+
+
+  dropdown-item:focus, .dropdown-item:hover {
+    color: #000 !important;
+    background-color: #FFEA6E !important;
+  }
+
+  .btn-check:focus+.btn-primary, .btn-primary:focus {
+    box-shadow: 0 0 10px 3px #FFEA6E !important; 
+  }
+
+  .nav-pills .nav-link.active, .nav-tabs .nav-link.active {
+    color: #000 !important;
+    background-color: #FFEA6E !important;
+  }
+
+  a {
+    color: #ffea6e;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
 }
+
