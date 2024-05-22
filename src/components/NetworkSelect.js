@@ -201,7 +201,7 @@ function NetworkSelect(props) {
                   {!loading
                     ? !error && <Button type="submit" className="bttn bttn-primary">Change network</Button>
                     : (
-                      <Button className="bttn-primary btn-lg mr-5" disabled>
+                      <Button className="bttn bttn-primary mr-5" disabled>
                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
                         Updating...
                       </Button>
