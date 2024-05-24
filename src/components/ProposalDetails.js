@@ -17,7 +17,7 @@ import AlertMessage from './AlertMessage';
 import Vote from '../utils/Vote.mjs';
 
 function ProposalDetails(props) {
-  const { proposal, tally, vote, network } = props
+  const { proposal, tally, vote, network, theme } = props
   const [granter, setGranter] = useState()
   const [granterVote, setGranterVote] = useState()
   const [error, setError] = useState()
@@ -173,21 +173,23 @@ function ProposalDetails(props) {
             <div className="row mt-3">
               <div className="col">
                 <h5 className="mb-3">{title}</h5>
-                <ReactMarkdown
-                  children={fixDescription}
-                  remarkPlugins={[remarkGfm]}
-                  disallowedElements={proposal.isSpam ? ['a'] : []}
-                  unwrapDisallowed={true}
-                  components={{
-                    h1: 'h5',
-                    h2: 'h6',
-                    h3: 'h6',
-                    h4: 'h6',
-                    h5: 'h6',
-                    h6: 'h6',
-                    table: ({node, ...props}) => <table className="table" {...props} />
-                  }}
-                />
+                <div className='markdown-container'>
+                  <ReactMarkdown
+                    children={fixDescription}
+                    remarkPlugins={[remarkGfm]}
+                    disallowedElements={proposal.isSpam ? ['a'] : []}
+                    unwrapDisallowed={true}
+                    components={{
+                      h1: 'h5',
+                      h2: 'h6',
+                      h3: 'h6',
+                      h4: 'h6',
+                      h5: 'h6',
+                      h6: 'h6',
+                      table: ({node, ...props}) => <table className="table" {...props} />
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </Tab.Pane>

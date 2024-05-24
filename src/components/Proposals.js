@@ -15,7 +15,7 @@ import { PROPOSAL_STATUSES } from '../utils/Proposal.mjs';
 import TooltipIcon from './TooltipIcon';
 
 function Proposals(props) {
-  const { proposals, tallies, votes } = props
+  const { proposals, tallies, votes, theme } = props
 
   const [filter, setFilter] = useState({keywords: '', status: '', group: 'voting'})
   const [results, setResults] = useState([])
@@ -79,7 +79,7 @@ function Proposals(props) {
     const vote = votes[proposalId]
     return (
       <tr key={proposalId} className={proposal.isSpam ? 'opacity-50' : ''}>
-        <td className="d-none d-md-table-cell">{proposalId}</td>
+        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-md-table-cell`}>{proposalId}</td>
         <td>
           <div className="d-flex align-items-center">
             <span role="button" onClick={() => props.showProposal(proposal)}>
@@ -92,20 +92,20 @@ function Proposals(props) {
             )}
           </div>
         </td>
-        <td className="d-none d-sm-table-cell text-center text-nowrap">
+        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-sm-table-cell text-center text-nowrap`}>
           {proposal.statusHuman}
         </td>
-        <td className="d-none d-sm-table-cell text-center text-nowrap">
+        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-sm-table-cell text-center text-nowrap`}>
           <Moment fromNow>
             {proposal.isDeposit ? proposal.deposit_end_time : proposal.voting_end_time}
           </Moment>
         </td>
-        <td className="text-center">
+        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
           {proposal.isVoting && (
             vote ? vote.optionHuman : <XCircle className="opacity-50" />
           )}
         </td>
-        <td className="d-none d-md-table-cell text-center">
+        <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-md-table-cell text-center`}>
           <ProposalProgress
             proposal={proposal}
             tally={tallies[proposalId]} />
@@ -174,12 +174,12 @@ function Proposals(props) {
         <Table className="align-middle table-striped">
           <thead>
             <tr>
-              <th className="d-none d-md-table-cell">#</th>
-              <th>Proposal</th>
-              <th className="d-none d-sm-table-cell text-center">Status</th>
-              <th className="d-none d-sm-table-cell text-center">End Time</th>
-              <th className="text-center">Vote</th>
-              <th className="d-none d-md-table-cell text-center">Progress</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-md-table-cell`}>#</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>Proposal</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-sm-table-cell text-center`}>Status</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-sm-table-cell text-center`}>End Time</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>Vote</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-md-table-cell text-center`}>Progress</th>
               <th></th>
             </tr>
           </thead>

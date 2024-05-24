@@ -33,6 +33,29 @@ a {
   color: #ffea6e;
 }
 
+.important-link:hover{
+  color: #ffea6e !important;
+  opacity: 50%;
+}
+
+.btn-close:focus {
+  outline: 0;
+  box-shadow: 0 0 10px 3px #FFEA6E !important; 
+  opacity: 1;
+}
+
+.disabled {
+  opacity: 50%;
+}
+
+.dark-validator {
+  color: #FFF;
+}
+
+.light-validator {
+  color: #000;
+}
+
 .select-wrapper {
   border: 1px solid #000000; 
   border-color: #000000 !important;
@@ -52,7 +75,14 @@ a {
 }
 
 
+.markdown-container a {
+  color: #FFEA6E;
+}
 
+.markdown-container a:hover {
+  color: #FFEA6E !important;
+  opacity: 50%;
+}
 
 
 .bttn {
@@ -142,7 +172,7 @@ code p{
 }
 
 .nav-pillls .nav-link.active {
-  background-color: #FFEA6E;
+  background-color: #FFEA6E !important;
   color: #000 !important;
 }
 

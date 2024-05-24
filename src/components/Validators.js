@@ -24,7 +24,7 @@ import REStakeStatus from './REStakeStatus';
 import AlertMessage from './AlertMessage';
 
 function Validators(props) {
-  const { address, wallet, network, validators, operators, delegations, operatorGrants } = props
+  const { address, wallet, network, validators, operators, delegations, operatorGrants, theme } = props
 
   const [filter, setFilter] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -177,7 +177,7 @@ function Validators(props) {
         <td className="ps-1 text-break">
           <div role="button" onClick={() => props.showValidator(validator, { activeTab: 'profile' })}>
             <div className="d-flex align-items-start align-items-sm-center justify-content-end flex-column flex-sm-row gap-1 gap-sm-3">
-              <ValidatorName validator={validator} className="me-auto" />
+              <ValidatorName validator={validator} className={`me-auto ${props.theme === 'dark' ? 'dark-validator' : 'light-validator'}`} />
               {badge ? <small><Badge bg={badge.bg} className="opacity-75">{badge.text}</Badge></small> : null}
               <div className="text-muted small d-none d-md-block">#{validator.rank}</div>
             </div>
@@ -185,6 +185,7 @@ function Validators(props) {
         </td>
         <td className="text-center">
           <REStakeStatus
+            className={`${props.theme === 'dark' ? 'dark-validator' : 'light-validator'}`}
             network={network}
             validator={validator}
             operator={operator}
@@ -198,7 +199,7 @@ function Validators(props) {
         </td>
         {network.apyEnabled && (
           <td className="text-center">
-            <span role="button" onClick={() => props.showValidator(validator, { activeTab: 'stake' })}>
+            <span role="button" onClick={() => props.showValidator(validator, { activeTab: 'stake' })} className={`${props.theme === 'dark' ? 'dark-validator' : 'light-validator'}`}>
               {props.validatorApy[validatorAddress] !== undefined
                 ? <small>{round(props.validatorApy[validatorAddress] * 100, 1).toLocaleString() + "%"}</small>
                 : "-"
@@ -206,16 +207,17 @@ function Validators(props) {
             </span>
           </td>
         )}
-        <td className={network.apyEnabled ? 'text-center d-none d-lg-table-cell' : 'text-center'}>
-          <small>{format(validator.commission.commission_rates.rate * 100, 2)}%</small>
+        <td className={`${network.apyEnabled ? 'text-center d-none d-lg-table-cell' : 'text-center'} ${props.theme === 'dark' ? ' dark-validator' : ' light-validator'}`} >
+          <small className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>{format(validator.commission.commission_rates.rate * 100, 2)}%</small>
         </td>
         {props.isLoading('delegations') || Object.keys(delegations || {}).length ? (
           <td className={filter.group === 'delegated' ? '' : 'd-none d-sm-table-cell'}>
             {!props.isLoading('delegations') ? (
               delegationBalance?.amount ? (
                 <div role="button" onClick={() => props.showValidator(validator, { activeTab: 'stake' })}>
-                  <small>
+                  <small className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                     <Coins
+                      className={`${props.theme === 'dark' ? 'dark-validator' : 'light-validator'}`}
                       coins={delegationBalance}
                       asset={network.baseAsset}
                       precision={3}
@@ -236,7 +238,7 @@ function Validators(props) {
               <td className="d-none d-md-table-cell">
                 {!props.isLoading('rewards') ? denomRewards && (
                   <div role="button" onClick={() => props.showValidator(validator, { activeTab: 'stake' })}>
-                    <small>
+                    <small className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                       <Coins
                         key={denomRewards.denom}
                         coins={denomRewards}
@@ -258,7 +260,7 @@ function Validators(props) {
           <td className="d-none d-lg-table-cell">
             {!props.isLoading('commission') ? (
               <div role="button" onClick={() => props.showValidator(validator, { activeTab: 'stake' })}>
-                <small>
+                <small className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>
                   <Coins
                     coins={denomCommission}
                     asset={network.baseAsset}
@@ -275,7 +277,7 @@ function Validators(props) {
         )}
         {!props.modal && (
           <td className={filter.group === 'delegated' ? 'd-none d-sm-table-cell' : ''}>
-            <div className="d-grid justify-content-end align-items-center">
+            <div className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-grid justify-content-end align-items-center`}>
               <ValidatorServices validator={validator} network={network} show={['stakingrewards', 'nodes']} theme={props.theme} />
             </div>
           </td>
@@ -308,7 +310,7 @@ function Validators(props) {
             <input className="form-control border-right-0 border" onChange={filterValidators} value={filter.keywords} type="text" placeholder="Search.." style={{maxWidth: 150}} />
             <span className="input-group-append">
               <button className="bttn border-left-0 border" type="button" onClick={() => setFilter({keywords: ''})}>
-                <XCircle />
+                <XCircle/>
               </button>
             </span>
           </div>
@@ -351,10 +353,10 @@ function Validators(props) {
         <Table className="align-middle table-striped">
           <thead>
             <tr>
-              <th colSpan={2}>Validator</th>
-              <th className="text-center">REStake</th>
+              <th colSpan={2} className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`}>Validator</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>REStake</th>
               {network.apyEnabled && (
-                <th className="text-center">
+                <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
                   <TooltipIcon
                     icon={<span className="text-decoration-underline">APY</span>}
                     identifier="delegations-apy"
@@ -366,24 +368,24 @@ function Validators(props) {
                   </TooltipIcon>
                 </th>
               )}
-              <th className={network.apyEnabled ? 'text-center d-none d-lg-table-cell' : 'text-center'}>Fee</th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} ${network.apyEnabled ? 'text-center d-none d-lg-table-cell' : 'text-center'} `}>Fee</th>
               {props.isLoading('delegations') || Object.keys(delegations || {}).length ? (
-                <th className={filter.group === 'delegated' ? '' : 'd-none d-sm-table-cell'}>Delegation</th>
+                <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} ${filter.group === 'delegated' ? '' : 'd-none d-sm-table-cell'}`}>Delegation</th>
               ) : null}
               {filter.group === 'delegated' && (
                 <>
                   {!props.modal && (
-                    <th className="d-none d-md-table-cell">Rewards</th>
+                    <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-md-table-cell`}>Rewards</th>
                   )}
                 </>
               )}
               {!props.modal && showCommission && (
-                <th className="d-none d-lg-table-cell">Commission</th>
+                <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-lg-table-cell`}>Commission</th>
               )}
               {!props.modal && (
-                <th className={filter.group === 'delegated' ? 'd-none d-sm-table-cell' : ''}></th>
+                <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} ${filter.group === 'delegated' ? 'd-none d-sm-table-cell' : ''}`}></th>
               )}
-              <th className="d-none d-sm-table-cell text-center"></th>
+              <th className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-sm-table-cell text-center`}></th>
             </tr>
           </thead>
           <tbody>
@@ -391,15 +393,15 @@ function Validators(props) {
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={2}></td>
-              <td className="text-center"></td>
+              <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'}`} colSpan={2}></td>
+              <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} text-center`}></td>
               {network.apyEnabled && (
                 <td className="text-center"></td>
               )}
-              <td className={network.apyEnabled ? 'text-center d-none d-lg-table-cell' : 'text-center'}></td>
+              <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} ${network.apyEnabled ? 'text-center d-none d-lg-table-cell' : 'text-center'}`}></td>
               {props.isLoading('delegations') || Object.keys(delegations || {}).length ? (
                 <td className={filter.group === 'delegated' ? '' : 'd-none d-sm-table-cell'}>
-                  <strong className="small">
+                  <strong className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} small`}>
                     <Coins
                       coins={{
                         amount: results.reduce((sum, result) => {
@@ -419,9 +421,9 @@ function Validators(props) {
               {filter.group === 'delegated' && (
                 <>
                   {!props.modal && (
-                    <td className="d-none d-md-table-cell">
+                    <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-md-table-cell`}>
                       {props.rewards && (
-                        <strong className="small">
+                        <strong className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} small`}>
                           <Coins
                             coins={{
                               amount: results.reduce((sum, result) => {
@@ -442,9 +444,9 @@ function Validators(props) {
                 </>
               )}
               {!props.modal && showCommission && (
-                <td className="d-none d-lg-table-cell">
+                <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-lg-table-cell`}>
                   {props.commission && (
-                    <strong className="small">
+                    <strong className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} small`}>
                       <Coins
                         coins={{
                           amount: results.reduce((sum, result) => {
@@ -465,7 +467,7 @@ function Validators(props) {
               {!props.modal && (
                 <td className={filter.group === 'delegated' ? 'd-none d-sm-table-cell' : ''}></td>
               )}
-              <td className="d-none d-sm-table-cell"></td>
+              <td className={`${props.theme === 'dark' ? 'text-white' : 'text-black'} d-none d-sm-table-cell`}></td>
             </tr>
           </tfoot>
         </Table>
