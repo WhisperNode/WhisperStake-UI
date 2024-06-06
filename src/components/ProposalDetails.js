@@ -27,6 +27,11 @@ function ProposalDetails(props) {
 
   const fixDescription = description?.replace(/\\n/g, '  \n')
 
+  const parsedDescription = parse(
+    micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] }),
+    { replace: transformElement }
+  );
+  
   const transformElement = (node) => {
     if (proposal.isSpam && node.name === 'a') {
       return <span>{node.children[0].data}</span>;
@@ -196,7 +201,7 @@ function ProposalDetails(props) {
               <div className="col">
                 <h5 className="mb-3">{title}</h5>
                 <div className='markdown-container'>
-                    {parse(micromark(fixDescription, {extensions: [gfm()], htmlExtensions: [gfmHtml()]}), { replace: transformElement})}
+                {parsedDescription}
                 </div>
               </div>
             </div>
