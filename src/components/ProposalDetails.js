@@ -54,21 +54,9 @@ function ProposalDetails(props) {
 
   const basicHTMLfromMarkdown = micromark(fixDescription)
   const fancyHTMLfromMarkdown = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
-  //const basicHTMLnoTransform = parse(basicHTMLfromMarkdown)
-  //const fancyHTMLnoTransform = parse(fancyHTMLfromMarkdown)
-  const basicParseTest = parse('<h1>hello</h1><h2>How are you</h2>')
 
   console.log("basicHTMLfromMarkdown", basicHTMLfromMarkdown);
   console.log("fancyHTMLfromMarkdown", fancyHTMLfromMarkdown);
-  console.log("basic parse test", basicParseTest)
-  //console.log("basicHTMLafterTransform", basicHTMLnoTransform);
-  //console.log("basicHTMLafterTransform", fancyHTMLnoTransform);
-  const parsedDescription = "hi"
-
-  //console.log("parsedDescription :", parse(
-  //  micromark(fixDescription),
-  //  { replace: transformElement }
-  //))
 
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
@@ -218,7 +206,7 @@ function ProposalDetails(props) {
               <div className="col">
                 <h5 className="mb-3">{title}</h5>
                 <div className='markdown-container'>
-                {parsedDescription}
+                <div dangerouslySetInnerHTML={{ __html: fancyHTMLfromMarkdown }}></div>
                 </div>
               </div>
             </div>
