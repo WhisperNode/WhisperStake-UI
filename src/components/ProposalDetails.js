@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Moment from 'react-moment';
 import {micromark} from 'micromark';
 import {gfm, gfmHtml} from 'micromark-extension-gfm';
-import parse from 'html-react-parser';
+import parse,{ domToReact } from 'html-react-parser';
 
 import {
   Table,
@@ -38,15 +38,15 @@ function ProposalDetails(props) {
   
     switch (node.name) {
       case 'h1':
-        return <h5>{node.children[0]?.data}</h5>;
+        return <h5>{domToReact(node.children, { replace: transformElement })}</h5>;
       case 'h2':
       case 'h3':
       case 'h4':
       case 'h5':
       case 'h6':
-        return <h6>{node.children[0]?.data}</h6>;
+        return <h6>{domToReact(node.children, { replace: transformElement })}</h6>;
       case 'table':
-        return <table className="table">{node.children.map((child, index) => transformElement(child, index))}</table>;
+        return <table className="table">{domToReact(node.children, { replace: transformElement })}</table>;
       default:
         return node;
     }
@@ -57,6 +57,8 @@ function ProposalDetails(props) {
     { replace: transformElement }
   );
 
+  console.log("parsedDescription :", parsedDescription)
+  
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
       setGranter(props.address)
