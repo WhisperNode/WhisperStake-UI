@@ -26,32 +26,36 @@ function ProposalDetails(props) {
   const { proposal_id, title, description } = proposal
 
   const fixDescription = description?.replace(/\\n/g, '  \n')
-
-  const parsedDescription = parse(
-    micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] }),
-    { replace: transformElement }
-  );
   
   const transformElement = (node) => {
+    if (!node || !node.name) {
+      return node;
+    }
+  
     if (proposal.isSpam && node.name === 'a') {
       return <span>{node.children[0].data}</span>;
     }
-
+  
     switch (node.name) {
       case 'h1':
-        return <h5>{node.children[0].data}</h5>;
+        return <h5>{node.children[0]?.data}</h5>;
       case 'h2':
       case 'h3':
       case 'h4':
       case 'h5':
       case 'h6':
-        return <h6>{node.children[0].data}</h6>;
+        return <h6>{node.children[0]?.data}</h6>;
       case 'table':
-        return <table className="table">{node.children.map((child) => transformElement(child))}</table>;
+        return <table className="table">{node.children.map((child, index) => transformElement(child, index))}</table>;
       default:
         return node;
     }
   };
+
+  const parsedDescription = parse(
+    micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] }),
+    { replace: transformElement }
+  );
 
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
