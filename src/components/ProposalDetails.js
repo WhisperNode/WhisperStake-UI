@@ -47,7 +47,7 @@ function ProposalDetails(props) {
 
   const htmlDescription = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
   const sanitizedHtml = DOMPurify.sanitize(htmlDescription);
-  const transformedDescription = transformHTMLString(htmlDescription, proposal.isSpam);
+  const transformedDescription = transformHTMLString(sanitizedHtml, proposal.isSpam);
 
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
