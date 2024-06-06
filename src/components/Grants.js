@@ -20,7 +20,7 @@ import Address from './Address'
 import { authzSupportMessage } from '../utils/Helpers.mjs';
 
 function Grants(props) {
-  const { address, wallet, network, operators, validators, grants } = props
+  const { address, wallet, network, operators, validators, grants, theme } = props
   const [error, setError] = useState()
   const [showModal, setShowModal] = useState()
   const [grantsLoading, setGrantLoading] = useReducer(
@@ -252,10 +252,10 @@ function Grants(props) {
           <div className="d-lg-flex d-none position-absolute mx-auto justify-content-center align-self-center">
             <Nav fill variant="pillls" activeKey={filter.group} className={`${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({ ...filter, group: e })}>
               <Nav.Item>
-                <Nav.Link eventKey="granter" disabled={filteredGrants(grants, { ...filter, group: 'granter' }).length < 1}>Granted by me</Nav.Link>
+                <Nav.Link eventKey="granter" className={`${props.theme === 'dark' ? 'dark-link' : 'light-link'}`} disabled={filteredGrants(grants, { ...filter, group: 'granter' }).length < 1}>Granted by me</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="grantee" disabled={filteredGrants(grants, { ...filter, group: 'grantee' }).length < 1}>Granted to me</Nav.Link>
+                <Nav.Link eventKey="grantee" className={`${props.theme === 'dark' ? 'dark-link' : 'light-link'}`} disabled={filteredGrants(grants, { ...filter, group: 'grantee' }).length < 1}>Granted to me</Nav.Link>
               </Nav.Item>
             </Nav>
           </div>
