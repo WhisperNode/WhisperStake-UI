@@ -56,10 +56,11 @@ function ProposalDetails(props) {
   const fancyHTMLfromMarkdown = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
   //const basicHTMLnoTransform = parse(basicHTMLfromMarkdown)
   //const fancyHTMLnoTransform = parse(fancyHTMLfromMarkdown)
+  const basicParseTest = parse('<h1>hello</h1><h2>How are you</h2>')
 
   console.log("basicHTMLfromMarkdown", basicHTMLfromMarkdown);
   console.log("fancyHTMLfromMarkdown", fancyHTMLfromMarkdown);
-  console.log("transformed basic element 1", transformElement(basicHTMLfromMarkdown[0]))
+  console.log("basic parse test", basicParseTest)
   //console.log("basicHTMLafterTransform", basicHTMLnoTransform);
   //console.log("basicHTMLafterTransform", fancyHTMLnoTransform);
   const parsedDescription = "hi"
