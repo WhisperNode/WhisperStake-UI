@@ -55,7 +55,7 @@ function ProposalDetails(props) {
   const parsedDescription = "hi"
 
   console.log("parsedDescription :", parse(
-    micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] }),
+    micromark(fixDescription),
     { replace: transformElement }
   ))
 
