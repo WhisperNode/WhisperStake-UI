@@ -147,10 +147,10 @@ function Proposals(props) {
         <div className="d-lg-flex d-none position-absolute mx-auto justify-content-center align-self-center">
           <Nav fill variant="pillls" activeKey={filter.group} className={`${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({...filter, group: e})}>
             <Nav.Item>
-              <Nav.Link eventKey="voting" disabled={filteredProposals(proposals, {...filter, group: 'voting'}).length < 1}>Voting Period</Nav.Link>
+              <Nav.Link eventKey="voting" className={`${props.theme === 'dark' ? 'dark-link' : 'light-link'}`} disabled={filteredProposals(proposals, {...filter, group: 'voting'}).length < 1}>Voting Period</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="all">All Proposals</Nav.Link>
+              <Nav.Link eventKey="all" className={`${props.theme === 'dark' ? 'dark-link' : 'light-link'}`}>All Proposals</Nav.Link>
             </Nav.Item>
           </Nav>
         </div>
