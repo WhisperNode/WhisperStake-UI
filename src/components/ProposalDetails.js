@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Moment from 'react-moment';
 import {micromark} from 'micromark';
 import {gfm, gfmHtml} from 'micromark-extension-gfm';
-import parse,{ domToReact } from 'html-react-parser';
+import DOMPurify from 'dompurify';
 
 import {
   Table,
@@ -27,36 +27,27 @@ function ProposalDetails(props) {
 
   const fixDescription = description?.replace(/\\n/g, '  \n')
   
-  const transformElement = (node) => {
-    if (!node || !node.name) {
-      return node;
+  const transformHTMLString = (htmlString, isSpam) => {
+    let transformedString = htmlString;
+  
+    // Transform headings
+    transformedString = transformedString.replace(/<h1>(.*?)<\/h1>/g, '<h5>$1</h5>');
+    transformedString = transformedString.replace(/<h[2-6]>(.*?)<\/h[2-6]>/g, '<h6>$1</h6>');
+  
+    // Remove all <a> tags if proposal is spam
+    if (isSpam) {
+      transformedString = transformedString.replace(/<a[^>]*>(.*?)<\/a>/g, '<span>$1</span>');
     }
   
-    if (proposal.isSpam && node.name === 'a') {
-      return <span>{node.children[0].data}</span>;
-    }
+    // Apply table class
+    transformedString = transformedString.replace(/<table>/g, '<table class="table">');
   
-    switch (node.name) {
-      case 'h1':
-        return <h5>{domToReact(node.children, { replace: transformElement })}</h5>;
-      case 'h2':
-      case 'h3':
-      case 'h4':
-      case 'h5':
-      case 'h6':
-        return <h6>{domToReact(node.children, { replace: transformElement })}</h6>;
-      case 'table':
-        return <table className="table">{domToReact(node.children, { replace: transformElement })}</table>;
-      default:
-        return node;
-    }
+    return transformedString;
   };
 
-  const basicHTMLfromMarkdown = micromark(fixDescription)
-  const fancyHTMLfromMarkdown = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
-
-  console.log("basicHTMLfromMarkdown", basicHTMLfromMarkdown);
-  console.log("fancyHTMLfromMarkdown", fancyHTMLfromMarkdown);
+  const htmlDescription = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
+  const sanitizedHtml = DOMPurify.sanitize(htmlDescription);
+  const transformedDescription = transformHTMLString(htmlDescription, proposal.isSpam);
 
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
@@ -206,7 +197,7 @@ function ProposalDetails(props) {
               <div className="col">
                 <h5 className="mb-3">{title}</h5>
                 <div className='markdown-container'>
-                <div dangerouslySetInnerHTML={{ __html: fancyHTMLfromMarkdown }}></div>
+                <div dangerouslySetInnerHTML={{ __html: transformedDescription }}></div>
                 </div>
               </div>
             </div>
