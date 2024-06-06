@@ -31,8 +31,8 @@ function ProposalDetails(props) {
     let transformedString = htmlString;
   
     // Transform headings
-    transformedString = transformedString.replace(/<h1>(.*?)<\/h1>/g, '<h5>$1</h5>');
     transformedString = transformedString.replace(/<h[2-6]>(.*?)<\/h[2-6]>/g, '<h6>$1</h6>');
+    transformedString = transformedString.replace(/<h1>(.*?)<\/h1>/g, '<h5>$1</h5>');
   
     // Remove all <a> tags if proposal is spam
     if (isSpam) {
