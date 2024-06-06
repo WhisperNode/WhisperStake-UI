@@ -52,13 +52,13 @@ function ProposalDetails(props) {
     }
   };
 
-  const parsedDescription = parse(
+  const parsedDescription = "hi"
+
+  console.log("parsedDescription :", parse(
     micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] }),
     { replace: transformElement }
-  );
+  ))
 
-  console.log("parsedDescription :", parsedDescription)
-  
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
       setGranter(props.address)
