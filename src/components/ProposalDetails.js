@@ -52,6 +52,15 @@ function ProposalDetails(props) {
     }
   };
 
+  const basicHTMLfromMarkdown = micromark(fixDescription)
+  const fancyHTMLfromMarkdown = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
+  const basicHTMLnoTransform = parse(basicHTMLfromMarkdown)
+  const fancyHTMLnoTransform = parse(fancyHTMLfromMarkdown)
+
+  console.log("basicHTMLfromMarkdown", basicHTMLfromMarkdown);
+  console.log("fancyHTMLfromMarkdown", fancyHTMLfromMarkdown);
+  console.log("basicHTMLafterTransform", basicHTMLnoTransform);
+  console.log("basicHTMLafterTransform", fancyHTMLnoTransform);
   const parsedDescription = "hi"
 
   console.log("parsedDescription :", parse(
