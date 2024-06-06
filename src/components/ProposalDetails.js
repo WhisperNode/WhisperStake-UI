@@ -54,19 +54,20 @@ function ProposalDetails(props) {
 
   const basicHTMLfromMarkdown = micromark(fixDescription)
   const fancyHTMLfromMarkdown = micromark(fixDescription, { extensions: [gfm()], htmlExtensions: [gfmHtml()] })
-  const basicHTMLnoTransform = parse(basicHTMLfromMarkdown)
-  const fancyHTMLnoTransform = parse(fancyHTMLfromMarkdown)
+  //const basicHTMLnoTransform = parse(basicHTMLfromMarkdown)
+  //const fancyHTMLnoTransform = parse(fancyHTMLfromMarkdown)
 
   console.log("basicHTMLfromMarkdown", basicHTMLfromMarkdown);
   console.log("fancyHTMLfromMarkdown", fancyHTMLfromMarkdown);
-  console.log("basicHTMLafterTransform", basicHTMLnoTransform);
-  console.log("basicHTMLafterTransform", fancyHTMLnoTransform);
+  console.log("transformed basic element 1", transformElement(basicHTMLfromMarkdown[0]))
+  //console.log("basicHTMLafterTransform", basicHTMLnoTransform);
+  //console.log("basicHTMLafterTransform", fancyHTMLnoTransform);
   const parsedDescription = "hi"
 
-  console.log("parsedDescription :", parse(
-    micromark(fixDescription),
-    { replace: transformElement }
-  ))
+  //console.log("parsedDescription :", parse(
+  //  micromark(fixDescription),
+  //  { replace: transformElement }
+  //))
 
   useEffect(() => {
     if(props.address !== props.wallet?.address && props.granters.includes(props.address)){
