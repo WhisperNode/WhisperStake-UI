@@ -328,10 +328,10 @@ function Validators(props) {
         <div className={`${!props.modal && 'd-md-flex'} d-none justify-content-center align-self-center`}>
           <Nav fill variant="pillls" activeKey={filter.group} className={`flex-row${props.modal ? ' small' : ''}`} onSelect={(e) => setFilter({group: e})}>
             <Nav.Item>
-              <Nav.Link eventKey="delegated" disabled={filteredValidators(validators, {...filter, group: 'delegated'}).length < 1}>My Delegations</Nav.Link>
+              <Nav.Link eventKey="delegated" className={`${props.theme === 'dark' ? 'dark-link' : 'light-link'}`} disabled={filteredValidators(validators, {...filter, group: 'delegated'}).length < 1}>My Delegations</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="all">All Validators</Nav.Link>
+              <Nav.Link eventKey="all" className={`${props.theme === 'dark' ? 'dark-link' : 'light-link'}`}>All Validators</Nav.Link>
             </Nav.Item>
           </Nav>
         </div>

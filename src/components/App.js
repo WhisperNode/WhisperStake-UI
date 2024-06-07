@@ -814,6 +814,7 @@ class App extends React.Component {
           )}
           {this.props.active === 'grants' && this.state.address && this.props.network.authzSupport && (
             <Grants
+              theme={this.props.theme}
               network={this.props.network}
               address={this.state.address}
               wallet={this.state.wallet}

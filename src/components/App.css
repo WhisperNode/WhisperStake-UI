@@ -196,6 +196,15 @@ code p{
   }
 }
 
+.table {
+    --bs-table-color-type: unset;
+    --bs-table-bg-type: unset;
+    --bs-table-color-state: unset;
+    --bs-table-bg-state: unset;
+    --bs-table-color: unset;
+    --bs-table-border-color: unset;
+}
+
 .dark-bar {
   background-color: #303030 !important;
 }
