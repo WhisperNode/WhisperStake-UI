@@ -242,7 +242,7 @@
   },
   {
     "name": "jackal",
-    "ownerAddress": "jklvaloper1upt02z2a64m00rh087q8r2esy7mg9yeq29j8gz"
+    "ownerAddress": "jklvaloper1jmwkzm7tevfmcxkrxyaru80wgs32elh9yntyye"
   },
   {
     "name": "oraichain"
@@ -262,7 +262,7 @@
   },
   {
     "name": "injective",
-    "ownerAddress": "injvaloper1cutynk8xve9lqmwt4nn575x95v9849zj6p9564",
+    "ownerAddress": "injvaloper1377ptxfucjnx8l0d2xxkshfu6wxjf0tel2x7ee",
     "authzAminoExecPreventTypes": [
       "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"
     ]
@@ -322,7 +322,7 @@
   },
   {
     "name": "dymension",
-    "ownerAddress": "dymvaloper1z2uv28s9ewxg0ch45m2v27ke76tf7hvw398ggu"
+    "ownerAddress": "dymvaloper1klq6n72844pq4pwqg9cwr34y997fn5wtx3y25f"
   },
   {
     "name": "humans"
